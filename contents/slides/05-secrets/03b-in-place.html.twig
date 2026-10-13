@@ -1,0 +1,21 @@
+<section>
+    <h3>Redacted in place</h3>
+    <svg class="anim" viewBox="0 0 960 316" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 400px;" role="img" aria-label="Animation: in a URL the value of code is replaced with REDACTED while tag=1&amp;tag=2 and flag stay untouched; in a JSON body access_token is redacted and 1.0 stays 1.0">
+        <rect x="20" y="14" width="920" height="112" rx="12" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+        <text x="44" y="48" text-anchor="start" fill="#7A6F66" font-size="15" font-weight="bold">URL</text>
+        <text class="h-note1" x="916" y="48" text-anchor="end" fill="#2B8A3E" font-size="15" font-weight="bold">tag=1&amp;tag=2 and flag: untouched</text>
+        <rect class="rm-hide h-hl1" x="185" y="70" width="78" height="32" rx="4" fill="#FFD8A8"/>
+        <text class="mono rm-hide h-before1" x="44" y="93" fill="#1F1A17" font-size="20">/token?code=<tspan fill="#C92A2A" font-weight="bold">abc123</tspan>&amp;tag=1&amp;tag=2&amp;flag</text>
+        <text class="mono h-after1" x="44" y="93" fill="#1F1A17" font-size="20">/token?code=<tspan fill="#E8590C" font-weight="bold">%5BREDACTED%5D</tspan>&amp;tag=1&amp;tag=2&amp;flag</text>
+        <rect x="20" y="142" width="920" height="112" rx="12" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+        <text x="44" y="176" text-anchor="start" fill="#7A6F66" font-size="15" font-weight="bold">JSON body</text>
+        <text class="h-note2" x="916" y="176" text-anchor="end" fill="#2B8A3E" font-size="15" font-weight="bold">1.0 stays 1.0</text>
+        <rect class="rm-hide h-hl2" x="245" y="198" width="126" height="32" rx="4" fill="#FFD8A8"/>
+        <text class="mono rm-hide h-before2" x="44" y="221" fill="#1F1A17" font-size="20">{&quot;access_token&quot;:&quot;<tspan fill="#C92A2A" font-weight="bold">eyJhbGciOi</tspan>&quot;,&quot;n&quot;:1.0}</text>
+        <text class="mono h-after2" x="44" y="221" fill="#1F1A17" font-size="20">{&quot;access_token&quot;:&quot;<tspan fill="#E8590C" font-weight="bold">[REDACTED]</tspan>&quot;,&quot;n&quot;:1.0}</text>
+        <text x="480" y="296" text-anchor="middle" fill="#E67700" font-size="18" font-weight="bold">replaced in place, on both sides: when recording and when replaying</text>
+    </svg>
+    <aside class="notes">
+        Two important details. Redaction happens in place: only the sensitive value is replaced, the rest of the URL or of the JSON stays byte-for-byte identical. And it is applied on both sides: on replay, the real request with its real secrets is redacted the same way before the comparison, so it always matches.
+    </aside>
+</section>

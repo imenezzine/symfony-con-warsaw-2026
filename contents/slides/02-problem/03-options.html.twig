@@ -1,0 +1,42 @@
+<section>
+    <h2>Two options… neither is great</h2>
+    <table class="compare">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Real HTTP calls</th>
+                <th>Handwritten mocks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fragment">
+                <td>Realism</td>
+                <td class="good">Real responses</td>
+                <td class="bad">What we imagine the API returns</td>
+            </tr>
+            <tr class="fragment">
+                <td>Speed</td>
+                <td class="bad">Slow (network)</td>
+                <td class="good">Instant</td>
+            </tr>
+            <tr class="fragment">
+                <td>Stability in CI</td>
+                <td class="bad">Depends on the provider (quotas, outages)</td>
+                <td class="good">Stable</td>
+            </tr>
+            <tr class="fragment">
+                <td>Secrets</td>
+                <td class="bad">API keys in CI</td>
+                <td class="good">None</td>
+            </tr>
+            <tr class="fragment">
+                <td>Maintenance</td>
+                <td class="meh">None… as long as the API answers</td>
+                <td class="bad">Tedious, and it drifts</td>
+            </tr>
+        </tbody>
+    </table>
+    <aside class="notes">
+        Real calls: realistic, but slow, flaky, and they need secrets in CI. Mocks: fast, but we end up testing our imagination rather than the API. The day the API changes, the test stays green and production breaks.
+    </aside>
+</section>

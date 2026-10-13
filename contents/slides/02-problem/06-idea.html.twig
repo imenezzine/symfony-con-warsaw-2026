@@ -1,0 +1,24 @@
+<section data-state="rec">
+    <h2>What if we recorded reality?</h2>
+    <div class="card-row">
+        <div class="card fragment">
+            <h4>1. Record</h4>
+            <p>The test makes the real calls <b>once</b> and saves every request / response pair.</p>
+        </div>
+        <div class="card violet fragment">
+            <h4>2. Commit</h4>
+            <p>The recording lives next to the test and is reviewed in the pull request like code.</p>
+        </div>
+        <div class="card green fragment">
+            <h4>3. Replay</h4>
+            <p>Every following run replays the responses, <b>without the network</b>.</p>
+        </div>
+    </div>
+    <p class="fragment callout">
+        The idea is not new: <b>php-vcr</b> has been doing it for years.<br>
+        Since Symfony 8.2, it is <b>built into HttpClient</b>, with no external dependency.
+    </p>
+    <aside class="notes">
+        This is "record and replay", made popular by VCR in Ruby and php-vcr in PHP. We keep the fidelity of the real API, with the speed and stability of a mock. What is new: it is now built into the HttpClient component (RecorderHttpClient) and driven from the tests by the PHPUnit Bridge, with no external dependency.
+    </aside>
+</section>

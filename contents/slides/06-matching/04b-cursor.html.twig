@@ -1,0 +1,26 @@
+<section>
+    <h3>A cursor that lives in the test</h3>
+    <svg class="anim" viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 430px;" role="img" aria-label="Animation: two GET /job entries, 202 then 200; the cursor moves from one to the other and stays in place when the client is recreated by a kernel reboot">
+        <rect x="20" y="16" width="920" height="170" rx="12" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+        <text x="44" y="50" text-anchor="start" fill="#1F1A17" font-size="18" font-weight="bold">Test state (HttpRecorder)</text>
+        <rect x="60" y="68" width="210" height="76" rx="8" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5" stroke-dasharray="6 4"/>
+        <rect class="g-hit1" x="60" y="68" width="210" height="76" rx="8" fill="#E3F6F8" stroke="#0C8599" stroke-width="2.5"/>
+        <text class="mono " x="165" y="98" text-anchor="middle" fill="#7A6F66" font-size="15">GET /job</text>
+        <text class="mono " x="165" y="128" text-anchor="middle" fill="#1F1A17" font-size="24" font-weight="bold">202</text>
+        <rect x="310" y="68" width="210" height="76" rx="8" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5" stroke-dasharray="6 4"/>
+        <rect class="g-hit2" x="310" y="68" width="210" height="76" rx="8" fill="#E3F6F8" stroke="#0C8599" stroke-width="2.5"/>
+        <text class="mono " x="415" y="98" text-anchor="middle" fill="#7A6F66" font-size="15">GET /job</text>
+        <text class="mono " x="415" y="128" text-anchor="middle" fill="#1F1A17" font-size="24" font-weight="bold">200</text>
+        <polygon class="g-cursor" points="151,174 179,174 165,152" fill="#E67700"/>
+        <text x="600" y="100" text-anchor="start" fill="#E67700" font-size="18" font-weight="bold">replay cursor</text>
+        <text x="600" y="126" text-anchor="start" fill="#7A6F66" font-size="15">belongs to the test, not to the client</text>
+        <g class="rm-hide g-c1"><rect x="230" y="212" width="500" height="62" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/><text x="480.0" y="249.0" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">RecorderHttpClient #1 (KernelBrowser)</text></g>
+        <g class="rm-hide g-c2"><rect x="230" y="212" width="500" height="62" rx="10" fill="#FFF4E6" stroke="#E67700" stroke-width="2.5"/><text x="480.0" y="249.0" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">kernel reboot: new container, new client</text></g>
+        <g class="g-c3"><rect x="230" y="212" width="500" height="62" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/><text x="480.0" y="249.0" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">RecorderHttpClient #2 (KernelBrowser)</text></g>
+        <text class="rm-hide g-s1" x="480" y="318" text-anchor="middle" fill="#0C8599" font-size="22" font-weight="bold">response served: 202</text>
+        <text class="g-s2" x="480" y="318" text-anchor="middle" fill="#2B8A3E" font-size="22" font-weight="bold">response served: 200</text>
+    </svg>
+    <aside class="notes">
+        The classic case: polling. The API answers 202 while the job is running, then 200. The file holds both responses, and replay serves them in order. The cursor lives in the state of the test, not in the client. That matters with WebTestCase: KernelBrowser reboots the kernel between two requests and recreates the client, but the cursor survives.
+    </aside>
+</section>

@@ -1,0 +1,11 @@
+<section>
+    <h3>What is redacted is replayed redacted</h3>
+    <pre style="font-size: 0.45em;"><code class="language-json" data-trim>
+{"access_token":"[REDACTED]","id_token":"[REDACTED]","token_type":"Bearer"}
+    </code></pre>
+    <ul style="font-size: 0.65em;">
+        <li class="fragment">A test that verifies the signature of a replayed <code>id_token</code> will fail</li>
+        <li class="fragment">Solution: <code>redact_except</code>, or your own <code>RedactorInterface</code></li>
+        <li class="fragment">And in that case: review the file before committing it</li>
+    </ul>
+</section>

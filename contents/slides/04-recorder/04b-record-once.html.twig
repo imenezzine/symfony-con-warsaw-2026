@@ -1,0 +1,21 @@
+<section data-state="rec">
+    <p class="eyebrow">Step 4</p>
+    <h3>Record once</h3>
+    <svg class="anim" viewBox="0 0 960 250" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 300px;" role="img" aria-label="Animation: a terminal types SYMFONY_HTTP_RECORDER=missing vendor/bin/phpunit --filter testRandom, the test passes and a testRandom.har file appears">
+        <rect x="0" y="0" width="960" height="250" rx="14" fill="#2B2321"/>
+        <circle cx="28" cy="26" r="7" fill="#E8590C"/><circle cx="50" cy="26" r="7" fill="#F59F00"/><circle cx="72" cy="26" r="7" fill="#0C8599"/>
+        <text class="mono " x="28" y="80" text-anchor="start" fill="#FFFDF7" font-size="17">$ SYMFONY_HTTP_RECORDER=missing vendor/bin/phpunit --filter testRandom</text>
+        <rect class="cover c-type" x="26" y="62" width="722" height="26" fill="#2B2321"/>
+        <text class="mono c-dot" x="28" y="122" text-anchor="start" fill="#BFB3A6" font-size="17">.                                             1 / 1 (100%)</text>
+        <text class="mono c-ok" x="28" y="160" text-anchor="start" fill="#69DB7C" font-size="17" font-weight="bold">OK (1 test, 1 assertion)</text>
+        <g class="c-file"><rect x="20" y="186" width="700" height="40" rx="8" fill="#3B2F2F" stroke="#FFA94D" stroke-width="1.5"/><text class="mono " x="36" y="212" text-anchor="start" fill="#FFA94D" font-size="17" font-weight="bold">+ tests/Controller/GetRandomControllerTest/testRandom.har</text><text x="740" y="212" text-anchor="start" fill="#BFB3A6" font-size="15">review, then commit</text></g>
+    </svg>
+    <ol style="font-size: 0.6em; margin-top: 0.8em;">
+        <li class="fragment">Real calls, <code>GetRandomControllerTest/testRandom.har</code> is written</li>
+        <li class="fragment">Review the file, commit it</li>
+        <li class="fragment">Next runs and CI: <code>SYMFONY_HTTP_RECORDER=replay</code> (the default when it is not set), replay, zero network</li>
+    </ol>
+    <aside class="notes">
+        Step 4: run the test once with SYMFONY_HTTP_RECORDER=missing. The real request goes out, and its response is written to the HAR file next to the test, in a directory named after the class. Review that file, it is readable JSON, commit it, and from then on every run replays it, CI included. Without the environment variable, we are in replay mode.
+    </aside>
+</section>

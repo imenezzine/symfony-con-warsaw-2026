@@ -1,0 +1,12 @@
+<section data-state="rec">
+    <h2>Demo</h2>
+    <ol style="font-size: 0.75em; line-height: 1.7;">
+        <li class="fragment">A test without a file: it fails in <code>replay</code> mode, without any request</li>
+        <li class="fragment"><code>SYMFONY_HTTP_RECORDER=missing</code>: the HAR file appears</li>
+        <li class="fragment">Open the file: the secrets are redacted</li>
+        <li class="fragment">Network off, no variable: the test passes</li>
+    </ol>
+    <aside class="notes">
+        Live demo, to prepare in advance with a project that calls a public API. Step 1: run the test marked with UseRecord without a file: it fails in replay mode with HarEntryNotFoundException, without any request. Step 2: run it again with SYMFONY_HTTP_RECORDER=missing: the HAR file appears next to the test. Step 3: open the file and show a redacted Authorization header or token. Step 4: turn the wifi off, run again without the variable: the test passes. Plan B if the venue network does not work: have a screen recording of the demo.
+    </aside>
+</section>

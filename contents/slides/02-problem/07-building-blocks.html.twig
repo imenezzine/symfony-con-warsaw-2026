@@ -1,0 +1,23 @@
+<section>
+    <h2>Three building blocks</h2>
+    <div class="card-row">
+        <div class="card fragment">
+            <h4>HttpClient component</h4>
+            <p class="card-tag"><code>RecorderHttpClient</code></p>
+            <p>Decorates the HTTP client: replays, records, or passes through.</p>
+        </div>
+        <div class="card violet fragment">
+            <h4>PHPUnit Bridge</h4>
+            <p class="card-tag"><code>#[UseRecord]</code></p>
+            <p>Tells which HAR file a test uses.</p>
+        </div>
+        <div class="card amber fragment">
+            <h4>When running the tests</h4>
+            <p class="card-tag"><code>SYMFONY_HTTP_RECORDER</code></p>
+            <p>Decides whether to replay or to record.</p>
+        </div>
+    </div>
+    <aside class="notes">
+        Three pieces. In the HttpClient component, RecorderHttpClient: a decorator that, for each request, replays a recorded response, records the real one, or lets it through. In the PHPUnit Bridge, the UseRecord attribute, which names the file a test uses. And an environment variable, SYMFONY_HTTP_RECORDER, which decides when you launch the tests whether you replay or record. We will look at each of them.
+    </aside>
+</section>

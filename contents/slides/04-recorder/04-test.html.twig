@@ -1,0 +1,24 @@
+<section>
+    <p class="eyebrow">Step 3</p>
+    <h3>Add the attribute to the test</h3>
+    <pre><code class="language-php" data-trim data-line-numbers="1-15|6|9-12">
+use Symfony\Bridge\PhpUnit\Attribute\UseRecord;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class GetRandomControllerTest extends WebTestCase
+{
+    #[UseRecord]
+    public function testRandom(): void
+    {
+        $client = static::createClient();
+        $client->request('GET', '/random');
+
+        $this->assertResponseIsSuccessful();
+    }
+}
+    </code></pre>
+    <p class="fragment subtitle" style="font-size: 0.6em;">The test uses <code>GetRandomControllerTest/testRandom.har</code>, stored next to it. Nothing else changes in the code.</p>
+    <aside class="notes">
+        The attribute only names the file. Recording is decided when you launch the tests, with the environment variable: nothing that touches the network can be committed by mistake. The test code does not change: the controller calls an external API, and that call is what gets recorded and then replayed. Outside PHPUnit, you build the client by hand with a RecorderConfiguration; two extension points: RecorderConfigurationInterface and RedactorInterface.
+    </aside>
+</section>

@@ -1,0 +1,25 @@
+<section>
+    <h3>Redacting without damaging the response</h3>
+    <pre style="font-size: 0.45em;"><code class="language-json" data-trim>
+{"meta":{},"password":"x","n":1.0,"big":12345678901234567890}
+    </code></pre>
+    <div class="fragment">
+        <p class="label-before">json_decode + json_encode</p>
+        <pre style="font-size: 0.45em;"><code class="language-json" data-trim>
+{"meta":[],"password":"[REDACTED]","n":1,"big":1.2345678901234567e+19}
+        </code></pre>
+    </div>
+    <div class="fragment">
+        <p class="label-after">In-place replacement</p>
+        <pre style="font-size: 0.45em;"><code class="language-json" data-trim>
+{"meta":{},"password":"[REDACTED]","n":1.0,"big":12345678901234567890}
+        </code></pre>
+    </div>
+    <p class="fragment callout">
+        The JSON is no longer decoded then re-encoded: sensitive values are replaced in a single pass,
+        the rest is <b>byte-for-byte identical</b> (<code>{}</code>, floats, big integers, escapes, formatting).
+    </p>
+    <aside class="notes">
+        If the JSON were decoded then re-encoded, an assertSame on the body would pass in record mode and fail in replay mode: very hard to diagnose.
+    </aside>
+</section>

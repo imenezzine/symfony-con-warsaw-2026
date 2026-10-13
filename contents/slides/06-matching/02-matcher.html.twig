@@ -1,0 +1,16 @@
+<section>
+    <h2>Recognising a request</h2>
+    <div class="card-row">
+        <div class="card fragment"><h4>Method</h4><p><code>GET</code>, <code>POST</code>…</p></div>
+        <div class="card violet fragment"><h4>URL</h4><p>Absolute, query string included</p></div>
+        <div class="card green fragment"><h4>Body</h4><p>When it is a string; a streamed body is not compared</p></div>
+    </div>
+    <p class="fragment callout">
+        Requests are first <b>normalised</b> the way HttpClient does it: <code>json</code>, <code>query</code>,
+        <code>base_uri</code>, <code>auth_basic</code>, <code>auth_bearer</code>… end up in the recorded URL, body and headers.
+    </p>
+    <p class="fragment subtitle" style="font-size: 0.6em;">Secrets redacted on both sides, and the random boundary of a multipart body replaced with a fixed value.</p>
+    <aside class="notes">
+        There is no MatcherInterface any more: the final rework removed it. To ignore a field that changes on every request, add it to redact. A matcher may come back later if the need shows up.
+    </aside>
+</section>

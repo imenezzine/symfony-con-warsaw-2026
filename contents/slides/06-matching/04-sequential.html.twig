@@ -1,0 +1,19 @@
+<section>
+    <h3>Same request, different responses</h3>
+    <pre><code class="language-php" data-trim data-line-numbers="1-7|2-3|5-6">
+// Recorded: an asynchronous export polled until it is ready
+$client->request('GET', 'https://api.example.com/exports/42')->toArray(); // 202
+$client->request('GET', 'https://api.example.com/exports/42')->toArray(); // 200
+
+// On replay: 202, then 200, then 200 (the last response is served again)
+// With SYMFONY_HTTP_RECORDER=missing: a recorded entry counts as already served
+    </code></pre>
+    <ul style="font-size: 0.65em;">
+        <li class="fragment">Entries are <b>appended</b> in order, never overwritten, and replayed <b>in order</b></li>
+        <li class="fragment">The replay cursor belongs to <b>the test</b>, not to the client: it survives the kernel reboot done by <code>KernelBrowser</code></li>
+        <li class="fragment"><code>RetryableHttpClient</code> cancels the failed attempt: a 500 then a 200 only records the 200</li>
+    </ul>
+    <aside class="notes">
+        At first, a new entry overwrote the previous one: recording a polling loop was impossible. Then the cursor lived in the client: in a WebTestCase, the kernel is rebooted between two requests, new container, new client, and we replayed 202, 202. Last case found during review: in missing mode, the entry we had just recorded was served again to the next request, and the polling never finished.
+    </aside>
+</section>

@@ -1,0 +1,20 @@
+<section>
+    <p class="eyebrow">Step 2</p>
+    <h3>Enable the recorder in the test environment</h3>
+    <pre><code class="language-yaml" data-trim>
+# config/packages/http_client.yaml
+when@test:
+    http_client:
+        recorder: true
+    </code></pre>
+    <p class="fragment callout">
+        The recorder decorates <code>http_client.transport</code>, as close to the network as possible:
+        <b>all</b> clients (default and scoped) are recorded, with absolute URLs, in a single file per test.
+    </p>
+    <p class="fragment callout warn">
+        Without this line, <code>#[UseRecord]</code> has no client to drive: the test hits the network.
+    </p>
+    <aside class="notes">
+        Since Symfony 8.2, the HTTP client configuration lives in HttpClientBundle: the root key is http_client, no longer framework. The recorder is opt-in: for a short while it was enabled automatically in the test environment, but Nicolas removed that, it would have been a first in the Symfony codebase. Nothing changes in the application code. Without the attribute on the test, and outside PHPUnit, it is in passthrough mode.
+    </aside>
+</section>

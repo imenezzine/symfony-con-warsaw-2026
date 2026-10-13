@@ -1,0 +1,32 @@
+<section>
+    <h3>The real API, or a made-up response?</h3>
+    <svg class="anim" viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 430px;" role="img" aria-label="Animation: on the left a real API call that ends in a timeout after 5 seconds, on the right a JSON mock typed by hand that never ends">
+        <rect x="20" y="20" width="440" height="340" rx="12" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+        <text x="240" y="62" text-anchor="middle" fill="#1F1A17" font-size="24" font-weight="bold">Real API</text>
+        <g><rect x="175" y="86" width="130" height="54" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="240.0" y="119.0" text-anchor="middle" fill="#FFFDF7" font-size="18" font-weight="bold">API</text></g>
+        <g class="rm-hide b-wait"><circle class="b-spin" cx="240" cy="205" r="30" fill="none" stroke="#0C8599" stroke-width="6" stroke-linecap="round" stroke-dasharray="130 60"/></g>
+        <g class="b-timeout"><circle cx="240" cy="205" r="30" fill="none" stroke="#C92A2A" stroke-width="6"/><path d="M228,193 l24,24 M252,193 l-24,24" stroke="#C92A2A" stroke-width="6" stroke-linecap="round"/></g>
+        <text class="rm-hide b-t0" x="240" y="292" text-anchor="middle" fill="#1F1A17" font-size="34" font-weight="bold">0.0 s</text>
+        <text class="rm-hide b-t1" x="240" y="292" text-anchor="middle" fill="#1F1A17" font-size="34" font-weight="bold">1.5 s</text>
+        <text class="rm-hide b-t2" x="240" y="292" text-anchor="middle" fill="#1F1A17" font-size="34" font-weight="bold">3.0 s</text>
+        <text class="rm-hide b-t3" x="240" y="292" text-anchor="middle" fill="#1F1A17" font-size="34" font-weight="bold">4.5 s</text>
+        <text class="b-timeout" x="240" y="292" text-anchor="middle" fill="#C92A2A" font-size="34" font-weight="bold">5.0 s</text>
+        <text class="b-timeout" x="240" y="332" text-anchor="middle" fill="#C92A2A" font-size="17" font-weight="bold">timeout · flaky · slow</text>
+        <rect x="500" y="20" width="440" height="340" rx="12" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+        <text x="720" y="62" text-anchor="middle" fill="#1F1A17" font-size="24" font-weight="bold">Handwritten mock</text>
+        <text class="mono " x="524" y="118" text-anchor="start" fill="#1F1A17" font-size="16">new MockResponse('{&quot;id&quot;: 42,</text>
+        <rect class="cover b-type1" x="518" y="100" width="410" height="26" fill="#FFFDF7"/>
+        <text class="mono " x="524" y="148" text-anchor="start" fill="#1F1A17" font-size="16"> &quot;status&quot;: &quot;succeeded&quot;,</text>
+        <rect class="cover b-type2" x="518" y="130" width="410" height="26" fill="#FFFDF7"/>
+        <text class="mono " x="524" y="178" text-anchor="start" fill="#1F1A17" font-size="16"> &quot;items&quot;: [{&quot;sku&quot;: &quot;A-1&quot;,</text>
+        <rect class="cover b-type3" x="518" y="160" width="410" height="26" fill="#FFFDF7"/>
+        <text class="mono " x="524" y="208" text-anchor="start" fill="#1F1A17" font-size="16">   &quot;qty&quot;: 3}],</text>
+        <rect class="cover b-type4" x="518" y="190" width="410" height="26" fill="#FFFDF7"/>
+        <text class="mono " x="524" y="238" text-anchor="start" fill="#7A6F66" font-size="16"> // + 40 other fields?</text>
+        <rect class="cover b-type5" x="518" y="220" width="410" height="26" fill="#FFFDF7"/>
+        <text class="b-drift" x="720" y="332" text-anchor="middle" fill="#E67700" font-size="17" font-weight="bold">tedious · drifts from the real API</text>
+    </svg>
+    <aside class="notes">
+        When we write the test, we face a choice: call the real API, or make the response up. On the left, the real API that ends in a timeout. On the right, the mock we keep typing by hand.
+    </aside>
+</section>

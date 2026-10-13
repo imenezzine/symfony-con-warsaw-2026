@@ -1,0 +1,40 @@
+<section>
+    <h2>Replay or record?</h2>
+    <table class="compare" style="font-size: 0.46em;">
+        <thead>
+            <tr>
+                <th style="width: 30%"><code>SYMFONY_HTTP_RECORDER</code></th>
+                <th>Behaviour</th>
+                <th style="width: 28%">When</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fragment">
+                <td><i>(empty)</i> or <code>replay</code></td>
+                <td>Replays the <code>.har</code> file. No matching entry: <code>HarEntryNotFoundException</code>, <b>never the network</b></td>
+                <td>Default, CI</td>
+            </tr>
+            <tr class="fragment">
+                <td><code>missing</code></td>
+                <td>Replays; if the entry is missing, makes the real call and appends it to the file</td>
+                <td>First recording, new call</td>
+            </tr>
+            <tr class="fragment">
+                <td><code>record</code></td>
+                <td>Always the real call; rewrites the files of the tests that ran</td>
+                <td>Refresh after an API change</td>
+            </tr>
+            <tr class="fragment">
+                <td><code>passthrough</code></td>
+                <td>Real calls, <code>.har</code> files neither read nor written</td>
+                <td>Check the tests against the real services</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="fragment callout" style="font-size: 0.6em; margin-top: 0.6em;">
+        <b>Fail closed</b>: a committed test <b>never</b> touches the network. Recording is an explicit choice, made at launch.
+    </p>
+    <aside class="notes">
+        Why fail closed: if the default recorded missing entries, renaming a URL in a test would silently call the real service, in CI as anywhere else. These values are exactly those of the RecorderMode enum (replay, record, missing, passthrough). Without #[UseRecord], or outside PHPUnit, the recorder is in passthrough mode: it does nothing.
+    </aside>
+</section>

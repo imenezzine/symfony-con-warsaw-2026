@@ -1,0 +1,22 @@
+<section data-state="rec">
+    <h3>Record once, replay on every run</h3>
+    <svg class="anim" viewBox="0 0 960 370" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 430px;" role="img" aria-label="Animation: on the first run the request goes to the API and the response is recorded in a .har file; on the next runs the test reads the response from the file and the network is crossed out">
+        <g class="rm-hide a-rec"><circle cx="52" cy="33" r="9" fill="#E8590C"/><text class="mono " x="70" y="39" text-anchor="start" fill="#E8590C" font-size="17" font-weight="bold">REC</text><text x="150" y="40" text-anchor="start" fill="#E8590C" font-size="22" font-weight="bold">First run: record</text></g>
+        <g class="a-play"><path d="M44,23 l18,10 l-18,10 z" fill="#0C8599"/><text class="mono " x="70" y="39" text-anchor="start" fill="#0C8599" font-size="17" font-weight="bold">PLAY</text><text x="150" y="40" text-anchor="start" fill="#0C8599" font-size="22" font-weight="bold">Next runs: replay</text></g>
+        <line x1="210" y1="160" x2="750" y2="160" stroke="#E6D9C3" stroke-width="2"/>
+        <line x1="210" y1="205" x2="750" y2="205" stroke="#E6D9C3" stroke-width="2"/>
+        <g><rect x="40" y="130" width="170" height="100" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/><text x="125.0" y="177.0" text-anchor="middle" fill="#1F1A17" font-size="18" font-weight="bold">Your test</text><text x="125.0" y="199.0" text-anchor="middle" fill="#7A6F66" font-size="14">PHPUnit</text></g>
+        <g><path d="M425,115 h85.8 l24.2,24.2 v110.8 h-110 z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5"/><path d="M510.8,115 v24.2 h24.2" fill="none" stroke="#1F1A17" stroke-width="1.5"/><text class="mono " x="438.2" y="144.7" text-anchor="start" fill="#0C8599" font-size="20" font-weight="bold">.har</text><rect x="438.2" y="163.6" width="77.0" height="6.8" rx="2" fill="#E6D9C3"/><rect x="438.2" y="179.8" width="55.0" height="6.8" rx="2" fill="#E6D9C3"/><rect x="438.2" y="196.0" width="83.6" height="6.8" rx="2" fill="#E6D9C3"/><rect x="438.2" y="212.2" width="66.0" height="6.8" rx="2" fill="#E6D9C3"/><rect x="438.2" y="228.4" width="79.2" height="6.8" rx="2" fill="#E6D9C3"/><g class="a-fill"><rect x="438.2" y="163.6" width="77.0" height="6.8" rx="2" fill="#E8590C"/><rect x="438.2" y="179.8" width="55.0" height="6.8" rx="2" fill="#E8590C"/><rect x="438.2" y="196.0" width="83.6" height="6.8" rx="2" fill="#E8590C"/><rect x="438.2" y="212.2" width="66.0" height="6.8" rx="2" fill="#E8590C"/><rect x="438.2" y="228.4" width="79.2" height="6.8" rx="2" fill="#E8590C"/></g></g>
+        <g class="a-api"><rect x="750" y="130" width="170" height="100" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="835.0" y="186.0" text-anchor="middle" fill="#FFFDF7" font-size="18" font-weight="bold">Third-party API</text></g>
+        <g class="a-cross"><line x1="742" y1="122" x2="928" y2="238" stroke="#C92A2A" stroke-width="5" stroke-linecap="round"/><line x1="928" y1="122" x2="742" y2="238" stroke="#C92A2A" stroke-width="5" stroke-linecap="round"/></g>
+        <g class="mv a-get1"><rect x="216.0" y="147" width="58" height="26" rx="13" fill="#E8590C"/><text class="mono " x="245" y="165" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
+        <g class="mv a-res1"><rect x="686.0" y="192" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="715" y="210" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
+        <g class="mv a-get2"><rect x="216.0" y="147" width="58" height="26" rx="13" fill="#0C8599"/><text class="mono " x="245" y="165" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
+        <g class="mv a-res2"><rect x="366.0" y="192" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="395" y="210" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
+        <text class="a-play" x="480" y="300" text-anchor="middle" fill="#0C8599" font-size="18" font-weight="bold">no network call: CI replays the file</text>
+        <text x="480" y="345" text-anchor="middle" fill="#7A6F66" font-size="16">HAR: standard, readable, diffable</text>
+    </svg>
+    <aside class="notes">
+        This animation sums up the whole talk. First run: the request really goes to the API, and the exchange is written to a file. Next runs: the test reads the file, and CI never touches the network again.
+    </aside>
+</section>

@@ -1,0 +1,61 @@
+<section data-state="rec">
+    <h3>Record mode</h3>
+    <svg viewBox="0 0 960 360" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 440px;" font-family="sans-serif" role="img" aria-label="In record mode, the request goes to the API, the response comes back to the test untouched, and a redacted copy is written to the HAR file">
+        <defs>
+            <marker id="arr-rec" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#7A6F66"/>
+            </marker>
+            <marker id="arr-rec-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#2B8A3E"/>
+            </marker>
+            <marker id="arr-rec-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#E67700"/>
+            </marker>
+        </defs>
+
+        <!-- Outbound -->
+        <rect x="20" y="80" width="180" height="80" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+        <text x="110" y="126" text-anchor="middle" fill="#1F1A17" font-size="18" font-weight="bold">Your test</text>
+
+        <rect x="260" y="80" width="220" height="80" rx="10" fill="#FFE8D6" stroke="#E8590C" stroke-width="2.5"/>
+        <text x="370" y="126" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">RecorderHttpClient</text>
+
+        <rect x="740" y="80" width="200" height="80" rx="10" fill="#2B2321"/>
+        <text x="840" y="126" text-anchor="middle" fill="#FFFDF7" font-size="18" font-weight="bold">Third-party API</text>
+
+        <line class="flow" x1="200" y1="120" x2="256" y2="120" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-rec)"/>
+        <line class="flow" x1="480" y1="120" x2="736" y2="120" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-rec)"/>
+        <text x="608" y="110" text-anchor="middle" fill="#7A6F66" font-size="15">real HTTP call</text>
+
+        <!-- Return -->
+        <g class="fragment">
+            <path class="flow" d="M840,80 V40 H110 V76" fill="none" stroke="#2B8A3E" stroke-width="2" marker-end="url(#arr-rec-green)"/>
+            <rect x="350" y="26" width="260" height="28" fill="#FFFDF7"/>
+            <text x="480" y="46" text-anchor="middle" fill="#2B8A3E" font-size="15" font-weight="bold">the real response comes back untouched</text>
+        </g>
+
+        <!-- Copy to the file -->
+        <g class="fragment">
+            <line class="flow" x1="370" y1="160" x2="370" y2="246" stroke="#E67700" stroke-width="2" marker-end="url(#arr-rec-amber)"/>
+            <text x="382" y="208" fill="#E67700" font-size="15">copy, on the last chunk</text>
+
+            <rect x="260" y="250" width="220" height="84" rx="10" fill="#FFF4E6" stroke="#E67700" stroke-width="1.5"/>
+            <text x="370" y="284" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">DefaultRedactor</text>
+            <text x="370" y="310" text-anchor="middle" fill="#7A6F66" font-size="14">redacts secrets</text>
+
+            <rect x="520" y="250" width="200" height="84" rx="10" fill="#FFF4E6" stroke="#E67700" stroke-width="1.5"/>
+            <text x="620" y="284" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">HarFile</text>
+            <text x="620" y="310" text-anchor="middle" fill="#7A6F66" font-size="14">written under flock()</text>
+
+            <rect x="760" y="250" width="180" height="84" rx="10" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <text x="850" y="284" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">testX.har</text>
+            <text x="850" y="310" text-anchor="middle" fill="#7A6F66" font-size="14">entry written</text>
+
+            <line class="flow" x1="480" y1="292" x2="516" y2="292" stroke="#E67700" stroke-width="2" marker-end="url(#arr-rec-amber)"/>
+            <line class="flow" x1="720" y1="292" x2="756" y2="292" stroke="#E67700" stroke-width="2" marker-end="url(#arr-rec-amber)"/>
+        </g>
+    </svg>
+    <aside class="notes">
+        In record mode, the test receives the real, unredacted response: the behaviour of the code under test does not change. Meanwhile, chunk after chunk, the recorder keeps a copy of the body; on the last chunk, it passes it through the redactor and writes it to the file. Nothing is read eagerly: stream() and concurrent requests keep working.
+    </aside>
+</section>

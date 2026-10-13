@@ -1,0 +1,22 @@
+<section>
+    <h2>Redacted by default</h2>
+    <div class="card-row">
+        <div class="card fragment">
+            <h4>Headers</h4>
+            <p><code>Authorization</code>, <code>Proxy-Authorization</code>, <code>Cookie</code>, <code>Set-Cookie</code>, <code>DPoP</code>, <code>X-Api-Key</code>, <code>X-Auth-Token</code></p>
+        </div>
+        <div class="card violet fragment">
+            <h4>Query, forms, JSON</h4>
+            <p>IANA OAuth registry, OpenID Connect, SAML: <code>access_token</code>, <code>refresh_token</code>, <code>id_token</code>, <code>client_secret</code>, <code>SAMLResponse</code>…</p>
+        </div>
+        <div class="card amber fragment">
+            <h4>Common names</h4>
+            <p><code>password</code>, <code>secret</code>, <code>token</code>, <code>api_key</code></p>
+            <p style="font-size: 0.8em;"><code>code</code> and <code>key</code>: query string and forms only, not in JSON</p>
+        </div>
+    </div>
+    <p class="fragment subtitle" style="margin-top: 1em; font-size: 0.6em;">
+        + URL fragments and the <code>Location</code> header, handled as URLs.
+        On the request <b>and</b> on the response, <b>before</b> anything is written.
+    </p>
+</section>

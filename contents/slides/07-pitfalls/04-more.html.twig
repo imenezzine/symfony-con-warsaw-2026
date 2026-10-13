@@ -1,0 +1,16 @@
+<section>
+    <h3>Two more to keep in mind</h3>
+    <div class="card-row">
+        <div class="card amber fragment">
+            <h4>Retry: only the last attempt</h4>
+            <p>With <code>RetryableHttpClient</code>, a 500 followed by a 200 only records the 200.</p>
+        </div>
+        <div class="card violet fragment">
+            <h4><code>HarFileResponseFactory</code> changes order</h4>
+            <p>Repeated entries are now replayed in order, instead of always serving the first one.</p>
+        </div>
+    </div>
+    <aside class="notes">
+        With RetryableHttpClient, the failed attempt is cancelled, so only the last one is recorded. And if you were already using HarFileResponseFactory, repeated entries are now replayed in order instead of always serving the first one.
+    </aside>
+</section>

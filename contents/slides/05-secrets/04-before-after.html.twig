@@ -1,0 +1,37 @@
+<section>
+    <h3>What really goes out… and what is written</h3>
+    <div class="before-after">
+        <div>
+            <p class="label-before">Real exchange</p>
+            <pre><code class="language-http" data-trim>
+POST /oauth/token
+Authorization: Basic bXktYXBwOnMzY3IzdA==
+
+grant_type=client_credentials
+&amp;client_id=my-app&amp;client_secret=s3cr3t
+
+200 OK
+{"access_token":"eyJhbGciOi...",
+ "token_type":"Bearer","expires_in":3600}
+            </code></pre>
+        </div>
+        <div class="fragment">
+            <p class="label-after">.har file</p>
+            <pre><code class="language-http" data-trim>
+POST /oauth/token
+Authorization: [REDACTED]
+
+grant_type=client_credentials
+&amp;client_id=my-app&amp;client_secret=%5BREDACTED%5D
+
+200 OK
+{"access_token":"[REDACTED]",
+ "token_type":"Bearer","expires_in":3600}
+            </code></pre>
+        </div>
+    </div>
+    <p class="fragment callout danger" style="font-size: 0.55em;">Without redaction, all of this would end up in a file the workflow asks you to <b>commit</b>.</p>
+    <aside class="notes">
+        Only the sensitive values are replaced. Everything else stays usable in the test: token_type, expires_in, the client_id.
+    </aside>
+</section>

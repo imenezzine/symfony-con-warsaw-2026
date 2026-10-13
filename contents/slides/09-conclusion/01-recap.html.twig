@@ -1,0 +1,15 @@
+<section>
+    <h2>To sum up</h2>
+    <div class="card-row">
+        <div class="card fragment"><h4>Record</h4><p class="card-tag"><code>RecorderHttpClient</code></p><p>Real exchanges, in the standard HAR format</p></div>
+        <div class="card violet fragment"><h4>Redact</h4><p class="card-tag"><code>DefaultRedactor</code></p><p>Secrets, by default, before anything is written</p></div>
+        <div class="card amber fragment"><h4>Match</h4><p class="card-tag">method · URL · body</p><p>The right response, in the right order</p></div>
+        <div class="card green fragment"><h4>Replay</h4><p class="card-tag"><code>MockHttpClient</code></p><p>Without the network, with a simple <code>#[UseRecord]</code></p></div>
+    </div>
+    <p class="fragment" style="margin-top: 1.2em; font-size: 0.75em; color: #1F1A17;">
+        One attribute, one command, and your tests no longer depend on the network.
+    </p>
+    <aside class="notes">
+        Since Symfony 8.2, testing code that depends on third-party APIs comes down to one attribute and one command: add UseRecord to the test, run it once with SYMFONY_HTTP_RECORDER=missing, and from then on the tests are fast, deterministic, and every API change becomes a readable diff.
+    </aside>
+</section>

@@ -1,0 +1,13 @@
+[modules.typescript-sdk]
+source = "dagger.io/sdk/typescript"
+
+[sdks.typescript]
+module = "typescript-sdk"
+
+[modules.symfony-con-warsaw-2026]
+entrypoint = true
+source = ".dagger"
+
+[sdks.typescript.scopes.".dagger"]
+is-module = true
+name = "symfony-con-warsaw-2026"

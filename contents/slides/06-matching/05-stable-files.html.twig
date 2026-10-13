@@ -1,0 +1,20 @@
+<section>
+    <h3>Files that do not change for nothing</h3>
+    <div class="card-row">
+        <div class="card fragment">
+            <h4>Unchanged API, unchanged file</h4>
+            <p>In <code>record</code> mode, an identical entry is kept as it was, date included: no diff.</p>
+        </div>
+        <div class="card violet fragment">
+            <h4>A skipped test keeps its file</h4>
+            <p>The previous version is only replaced when the first entry is recorded.</p>
+        </div>
+        <div class="card green fragment">
+            <h4>Safe writes</h4>
+            <p>Atomic write under a lock: parallel tests do not lose entries.</p>
+        </div>
+    </div>
+    <aside class="notes">
+        These files are committed, so they must only change when the API changes. In record mode, the file is rewritten entry by entry, and an entry identical to the one that was at the same position is kept as it was, date included: recording an unchanged API again produces no diff. A test that records nothing, because it is skipped for example, keeps its file. And every write is atomic, under a lock.
+    </aside>
+</section>

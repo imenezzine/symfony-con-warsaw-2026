@@ -1,0 +1,23 @@
+<section data-state="rec">
+    <h3>Pick the tests with PHPUnit</h3>
+    <pre><code class="language-bash" data-trim>
+# record a class again after an API change
+SYMFONY_HTTP_RECORDER=record vendor/bin/phpunit tests/Controller/GetRandomControllerTest.php
+
+# add what is missing in a group, without touching the rest
+SYMFONY_HTTP_RECORDER=missing vendor/bin/phpunit --group payment
+    </code></pre>
+    <div class="card-row">
+        <div class="card amber fragment">
+            <h4>Why not in the attribute?</h4>
+            <p>A recording mode must never be committed: it is a setting for the duration of a run.</p>
+        </div>
+        <div class="card green fragment">
+            <h4>Before committing</h4>
+            <p>Review the diff of the HAR files, like any other code.</p>
+        </div>
+    </div>
+    <aside class="notes">
+        To choose which tests to record, use what PHPUnit already does: --filter, --group, a file path. Why an environment variable and not a parameter of the attribute? Because a recording mode should never be committed: you turn it on for one run, whereas the attribute is part of the test.
+    </aside>
+</section>

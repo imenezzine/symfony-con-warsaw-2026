@@ -1,0 +1,30 @@
+<section>
+    <h3>HAR: HTTP Archive</h3>
+    <p class="subtitle" style="font-size: 0.55em;">The W3C JSON format for archiving HTTP exchanges: readable, reviewed in a pull request like code, opened by browser devtools</p>
+    <pre><code class="language-json" data-trim data-line-numbers="1-20|3-9|6-8|10-18|14-17">
+{
+  "startedDateTime": "2026-09-03T14:07:14.638Z",
+  "request": {
+    "method": "POST",
+    "url": "https://auth.example.com/oauth/token",
+    "postData": {
+      "text": "grant_type=client_credentials&amp;client_secret=%5BREDACTED%5D"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": [
+      {"name": "content-type", "value": "application/json"}
+    ],
+    "content": {
+      "mimeType": "application/json",
+      "text": "{\"access_token\":\"[REDACTED]\",\"expires_in\":3600}"
+    }
+  }
+}
+    </code></pre>
+    <p class="subtitle" style="font-size: 0.5em;">Simplified excerpt of a file written by the recorder. A binary body is stored as base64.</p>
+    <aside class="notes">
+        You have probably seen "Save all as HAR" in the Network tab of your browser: that is this format. When the API changes, the diff of the HAR file shows up in the pull request. Notice the [REDACTED] on client_secret and access_token already: we will come back to it, it is one of the key points.
+    </aside>
+</section>

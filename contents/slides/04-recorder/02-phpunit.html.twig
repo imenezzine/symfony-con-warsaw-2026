@@ -1,0 +1,20 @@
+<section>
+    <p class="eyebrow">Step 1</p>
+    <h3>Register the PHPUnit extension</h3>
+    <pre><code class="language-xml" data-trim data-line-numbers="1-7|3|4-5">
+&lt;!-- phpunit.dist.xml --&gt;
+&lt;extensions&gt;
+    &lt;bootstrap class="Symfony\Bridge\PhpUnit\SymfonyExtension"&gt;
+        &lt;!-- optional: all recordings in a single directory --&gt;
+        &lt;parameter name="http-recorder-directory" value="tests/records"/&gt;
+    &lt;/bootstrap&gt;
+&lt;/extensions&gt;
+    </code></pre>
+    <p class="subtitle" style="font-size: 0.6em;">
+        Without the parameter, each <code>.har</code> file lives next to its test.
+        With it, the tree follows the namespace: <code>tests/records/App/Tests/FooTest/testBar.har</code>
+    </p>
+    <aside class="notes">
+        Many projects already have this extension for ClockMock or DnsMock. The parameter almost disappeared in the final rework; Adrien pointed out that it avoids scattering .har files across every test directory, and Nicolas brought it back, improved: when it is set, every path starts from it, including the default one.
+    </aside>
+</section>

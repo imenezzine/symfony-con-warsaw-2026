@@ -1,0 +1,17 @@
+<section>
+    <h3>One file per test, wherever you want it</h3>
+    <pre><code class="language-php" data-trim data-line-numbers="1-5|1|2|3|5">
+#[UseRecord]                             // ClassName/methodName.har, next to the test
+#[UseRecord('fixtures/random.har')]      // relative to the directory of the test
+#[UseRecord('/var/fixtures/random.har')] // absolute
+
+// with a data provider: testRandom@dataSetName.har
+    </code></pre>
+    <ul style="font-size: 0.65em;">
+        <li class="fragment">On the class: applies to every test, the attribute on the method wins</li>
+        <li class="fragment">With <code>http-recorder-directory</code>: every path starts from that directory, and the default path follows the namespace of the test</li>
+    </ul>
+    <aside class="notes">
+        By default each test has its own file, named after the class and the method, stored next to the test. You can give a path relative to the directory of the test, or an absolute path. With a data provider, each data set has its own file, with the name of the data set after an at sign. If you do not want files scattered across your test directories, centralise them with the http-recorder-directory parameter of the extension: the default path then mirrors the namespace of the test, so that two classes with the same name do not collide.
+    </aside>
+</section>

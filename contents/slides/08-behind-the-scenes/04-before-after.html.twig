@@ -1,0 +1,37 @@
+<section>
+    <h3>What the review changed</h3>
+    <table class="compare" style="font-size: 0.55em;">
+        <thead>
+            <tr>
+                <th style="width: 18%"></th>
+                <th>First version</th>
+                <th>Today</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fragment">
+                <td>Secrets</td>
+                <td class="bad"><code>Authorization</code>, cookies, tokens written as is</td>
+                <td class="good">Redacted by default, request and response</td>
+            </tr>
+            <tr class="fragment">
+                <td>Missing entry</td>
+                <td class="bad">Real network call by default, silently</td>
+                <td class="good">Exception, never the network</td>
+            </tr>
+            <tr class="fragment">
+                <td><code>stream()</code></td>
+                <td class="bad">Broken, and <code>getContent()</code> serialised the requests</td>
+                <td class="good"><code>AsyncResponse</code>, recorded chunk after chunk</td>
+            </tr>
+            <tr class="fragment">
+                <td>Options</td>
+                <td class="bad"><code>timeout: 5</code> became 60 s when recording</td>
+                <td class="good">Original options passed through as is</td>
+            </tr>
+        </tbody>
+    </table>
+    <aside class="notes">
+        A decorator must be transparent: it has to respect stream(), concurrency, withOptions(), and the default options of the decorated client. Each of these rows is a bug found by a reviewer who actually ran the code.
+    </aside>
+</section>

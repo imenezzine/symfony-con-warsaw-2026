@@ -1,0 +1,15 @@
+<section>
+    <h3>Recording an error response</h3>
+    <pre><code class="language-php" data-trim data-line-numbers="1-8|1-2|4-6">
+// Not recorded: the exception consumes the response
+$response->getContent();   // ClientException on a 404
+
+// Recorded with its status and its body
+$response->getContent(false);
+$response->toArray(false);
+    </code></pre>
+    <p class="fragment callout warn">
+        Only <b>fully received</b> responses are written. A response destroyed without being read, cancelled,
+        or consumed through the exception is not recorded: on replay, the test fails clearly instead of receiving an empty body.
+    </p>
+</section>

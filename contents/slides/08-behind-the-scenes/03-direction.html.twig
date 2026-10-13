@@ -1,0 +1,14 @@
+<section>
+    <h3>The comment that changed the direction</h3>
+    <blockquote class="review">
+        We do want record and replay in HttpClient […]
+        <b>build on what is already there instead of alongside it.</b>
+        <br><br>
+        None of this is a rejection of the idea. It is a request to make the recorder produce real HAR
+        that our existing reader consumes, to <b>fail closed</b>, and to <b>keep secrets out of files people commit</b>.
+        <cite>Nicolas Grekas, August 17, 2026</cite>
+    </blockquote>
+    <aside class="notes">
+        Three principles, and we have seen them throughout the talk: a single HAR format read by the existing code, a replay that never touches the network by surprise, and redaction by default.
+    </aside>
+</section>

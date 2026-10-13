@@ -1,0 +1,25 @@
+<section>
+    <h3>CI never touches the network</h3>
+    <svg class="anim" viewBox="0 0 960 250" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 270px;" role="img" aria-label="Animation: in CI a request heads to the network, is stopped by a wall labelled replay and goes to the HAR file instead">
+        <line x1="190" y1="85" x2="560" y2="85" stroke="#E6D9C3" stroke-width="2"/>
+        <g><rect x="40" y="40" width="150" height="90" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/><text x="115.0" y="91.0" text-anchor="middle" fill="#1F1A17" font-size="26" font-weight="bold">CI</text></g>
+        <rect x="560" y="14" width="22" height="150" rx="6" fill="#0C8599"/>
+        <text class="mono " x="571" y="186" text-anchor="middle" fill="#0C8599" font-size="15" font-weight="bold">replay</text>
+        <g opacity="0.35"><g><rect x="720" y="40" width="200" height="90" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="820.0" y="91.0" text-anchor="middle" fill="#FFFDF7" font-size="18" font-weight="bold">Network</text></g></g>
+        <g><path d="M300,140 h65.52 l18.48,18.48 v81.52 h-84 z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5"/><path d="M365.52,140 v18.48 h18.48" fill="none" stroke="#1F1A17" stroke-width="1.5"/><text class="mono " x="310.08" y="162.0" text-anchor="start" fill="#0C8599" font-size="15" font-weight="bold">.har</text><rect x="310.08" y="176.0" width="58.8" height="5.0" rx="2" fill="#E6D9C3"/><rect x="310.08" y="188.0" width="42.0" height="5.0" rx="2" fill="#E6D9C3"/><rect x="310.08" y="200.0" width="63.8" height="5.0" rx="2" fill="#E6D9C3"/><rect x="310.08" y="212.0" width="50.4" height="5.0" rx="2" fill="#E6D9C3"/><rect x="310.08" y="224.0" width="60.5" height="5.0" rx="2" fill="#E6D9C3"/></g>
+        <g class="mv i-go"><rect x="193.0" y="72" width="58" height="26" rx="13" fill="#E8590C"/><text class="mono " x="222" y="90" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
+        <g class="mv i-stop"><rect x="499.0" y="72" width="58" height="26" rx="13" fill="#C92A2A"/><text class="mono " x="528" y="90" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">stop</text></g>
+        <g class="mv i-file"><rect x="499.0" y="72" width="58" height="26" rx="13" fill="#0C8599"/><text class="mono " x="528" y="90" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
+        <g class="mv i-back"><rect x="261.0" y="167" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="290" y="185" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
+        <text x="770" y="204" text-anchor="middle" fill="#1F1A17" font-size="20" font-weight="bold">committed = replayed</text>
+        <text x="770" y="230" text-anchor="middle" fill="#7A6F66" font-size="15">a forgotten file fails, it never calls out</text>
+    </svg>
+    <ul style="font-size: 0.6em;">
+        <li class="fragment">A forgotten file makes the test <b>fail</b>, without any request</li>
+        <li class="fragment">The code under test catches the exception? A <b>PHPUnit warning</b> still reports the missing request, with its redacted URL</li>
+        <li class="fragment">Invalid value in <code>SYMFONY_HTTP_RECORDER</code>: a warning, then <b>replay</b></li>
+    </ul>
+    <aside class="notes">
+        Without the environment variable we are in replay mode, and a request missing from the file fails the test instead of going out on the network. If the code under test catches the exception, for example a service with a fallback, a PHPUnit warning still reports the missing request. And if someone types an invalid value in the variable, we get a warning and everything is replayed: never the network by accident.
+    </aside>
+</section>
