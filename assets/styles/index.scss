@@ -835,10 +835,14 @@ $anim-font-mono: 'JetBrains Mono', ui-monospace, monospace;
     animation: none;
 }
 
-/* Slide de titre : la bannière de la conférence, l'étiquette de cassette posée dans son espace vide */
-.reveal .title-banner {
-    position: relative;
-    width: 100%;
+/* Slide de titre : la bannière de la conférence sert d'autocollant à la cassette, le titre est écrit au feutre dessus */
+.reveal .title-cassette {
+    width: 82%;
+}
+
+.reveal .title-sticker {
+    padding: 0;
+    background: #FFFFFF;
 
     img {
         display: block;
@@ -847,23 +851,26 @@ $anim-font-mono: 'JetBrains Mono', ui-monospace, monospace;
     }
 }
 
-.reveal .title-banner-label {
+.reveal .title-handwritten {
     position: absolute;
-    left: 5.5%;
-    top: 57.5%;
-    width: 43%;
-    padding: 0.25em 0.6em 0.75em;
-    border: 3px solid $ink;
-    box-shadow: 5px 5px 0 $ink;
-    transform: rotate(-1.5deg);
-
-    .cassette-side {
-        font-size: 0.32em;
-    }
+    left: 5%;
+    top: 55%;
+    width: 47%;
+    text-align: center;
+    transform: rotate(-4deg);
 
     h1 {
-        margin: 0.05em 0 0;
-        font-size: 1.35em;
+        margin: 0;
+        color: $ink;
+        font-family: $font-marker;
+        font-size: 1.75em;
         line-height: 1;
+    }
+
+    p {
+        margin: 0.15em 0 0;
+        color: #6E358C;
+        font-family: $font-marker;
+        font-size: 0.75em;
     }
 }
