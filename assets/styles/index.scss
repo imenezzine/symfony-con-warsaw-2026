@@ -828,3 +828,9 @@ $anim-font-mono: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 0.6em;
     white-space: nowrap;
 }
+
+/* Une ligne animée affichée en fragment démarre son animation quand elle apparaît */
+.reveal .anim .fragment:not(.visible) .mv,
+.reveal .anim .fragment:not(.visible) .d-mark {
+    animation: none;
+}

@@ -1,41 +1,49 @@
 <section>
     <h3>Four modes, one default</h3>
     <svg class="anim" viewBox="0 0 960 370" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 470px;" role="img" aria-label="Animation of the four modes: replay reads the file, missing records what is missing, record makes every request again, passthrough goes to the network without a file">
-        <rect x="20" y="12" width="920" height="76" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
-        <text class="mono " x="44" y="45" text-anchor="start" fill="#1F1A17" font-size="20" font-weight="bold">replay</text>
-        <text x="44" y="70" text-anchor="start" fill="#7A6F66" font-size="14">default · replays, fails if missing</text>
-        <line x1="400" y1="50" x2="790" y2="50" stroke="#E6D9C3" stroke-width="2"/>
-        <g><g><path d="M610,22 h35.88 l10.12,10.12 v45.88 h-46 z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5"/><path d="M645.88,22 v10.12 h10.12" fill="none" stroke="#1F1A17" stroke-width="1.5"/><text class="mono " x="615.52" y="34.32" text-anchor="start" fill="#0C8599" font-size="8" font-weight="bold">.har</text><rect x="615.52" y="42.2" width="32.2" height="3.0" rx="2" fill="#E6D9C3"/><rect x="615.52" y="48.9" width="23.0" height="3.0" rx="2" fill="#E6D9C3"/></g></g>
-        <g opacity="0.3"><g><rect x="790" y="26" width="126" height="48" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="853.0" y="56.0" text-anchor="middle" fill="#FFFDF7" font-size="16" font-weight="bold">API</text></g></g>
-        <g class="mv d-go-har"><rect x="376.0" y="37" width="58" height="26" rx="13" fill="#0C8599"/><text class="mono " x="405" y="55" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
-        <g class="mv d-back-har"><rect x="546.0" y="37" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="575" y="55" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
-        <rect x="20" y="102" width="920" height="76" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
-        <text class="mono " x="44" y="135" text-anchor="start" fill="#1F1A17" font-size="20" font-weight="bold">missing</text>
-        <text x="44" y="160" text-anchor="start" fill="#7A6F66" font-size="14">replays, records what is missing</text>
-        <line x1="400" y1="140" x2="790" y2="140" stroke="#E6D9C3" stroke-width="2"/>
-        <g><g><path d="M610,112 h35.88 l10.12,10.12 v45.88 h-46 z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5"/><path d="M645.88,112 v10.12 h10.12" fill="none" stroke="#1F1A17" stroke-width="1.5"/><text class="mono " x="615.52" y="124.32" text-anchor="start" fill="#0C8599" font-size="8" font-weight="bold">.har</text><rect x="615.52" y="132.2" width="32.2" height="3.0" rx="2" fill="#E6D9C3"/><rect x="615.52" y="138.9" width="23.0" height="3.0" rx="2" fill="#E6D9C3"/></g></g>
-        <g><g><rect x="790" y="116" width="126" height="48" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="853.0" y="146.0" text-anchor="middle" fill="#FFFDF7" font-size="16" font-weight="bold">API</text></g></g>
-        <g class="mv d-go-har-fast"><rect x="376.0" y="127" width="58" height="26" rx="13" fill="#E8590C"/><text class="mono " x="405" y="145" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
-        <g class="mv d-har-api"><rect x="546.0" y="127" width="58" height="26" rx="13" fill="#E8590C"/><text class="mono " x="575" y="145" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
-        <g class="mv d-back-api"><rect x="736.0" y="127" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="765" y="145" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
-        <text class="d-mark" x="690" y="126" text-anchor="start" fill="#E67700" font-size="14" font-weight="bold">+ 1 entry</text>
-        <rect x="20" y="192" width="920" height="76" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
-        <text class="mono " x="44" y="225" text-anchor="start" fill="#1F1A17" font-size="20" font-weight="bold">record</text>
-        <text x="44" y="250" text-anchor="start" fill="#7A6F66" font-size="14">records everything again</text>
-        <line x1="400" y1="230" x2="790" y2="230" stroke="#E6D9C3" stroke-width="2"/>
-        <g><g><path d="M610,202 h35.88 l10.12,10.12 v45.88 h-46 z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5"/><path d="M645.88,202 v10.12 h10.12" fill="none" stroke="#1F1A17" stroke-width="1.5"/><text class="mono " x="615.52" y="214.32" text-anchor="start" fill="#0C8599" font-size="8" font-weight="bold">.har</text><rect x="615.52" y="222.2" width="32.2" height="3.0" rx="2" fill="#E6D9C3"/><rect x="615.52" y="228.9" width="23.0" height="3.0" rx="2" fill="#E6D9C3"/></g></g>
-        <g><g><rect x="790" y="206" width="126" height="48" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="853.0" y="236.0" text-anchor="middle" fill="#FFFDF7" font-size="16" font-weight="bold">API</text></g></g>
-        <g class="mv d-go-api"><rect x="376.0" y="217" width="58" height="26" rx="13" fill="#E8590C"/><text class="mono " x="405" y="235" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
-        <g class="mv d-back-api"><rect x="736.0" y="217" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="765" y="235" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
-        <text class="d-mark" x="690" y="216" text-anchor="start" fill="#E67700" font-size="14" font-weight="bold">rewritten</text>
-        <rect x="20" y="282" width="920" height="76" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
-        <text class="mono " x="44" y="315" text-anchor="start" fill="#1F1A17" font-size="20" font-weight="bold">passthrough</text>
-        <text x="44" y="340" text-anchor="start" fill="#7A6F66" font-size="14">real requests, no file</text>
-        <line x1="400" y1="320" x2="790" y2="320" stroke="#E6D9C3" stroke-width="2"/>
-        <g opacity="0.25"><g><path d="M610,292 h35.88 l10.12,10.12 v45.88 h-46 z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5"/><path d="M645.88,292 v10.12 h10.12" fill="none" stroke="#1F1A17" stroke-width="1.5"/><text class="mono " x="615.52" y="304.32" text-anchor="start" fill="#0C8599" font-size="8" font-weight="bold">.har</text><rect x="615.52" y="312.2" width="32.2" height="3.0" rx="2" fill="#E6D9C3"/><rect x="615.52" y="318.9" width="23.0" height="3.0" rx="2" fill="#E6D9C3"/></g></g>
-        <g><g><rect x="790" y="296" width="126" height="48" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="853.0" y="326.0" text-anchor="middle" fill="#FFFDF7" font-size="16" font-weight="bold">API</text></g></g>
-        <g class="mv d-go-api"><rect x="376.0" y="307" width="58" height="26" rx="13" fill="#7A6F66"/><text class="mono " x="405" y="325" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
-        <g class="mv d-back-api"><rect x="736.0" y="307" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="765" y="325" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
+        <g class="fragment">
+            <rect x="20" y="12" width="920" height="76" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+            <text class="mono " x="44" y="45" text-anchor="start" fill="#1F1A17" font-size="20" font-weight="bold">replay</text>
+            <text x="44" y="70" text-anchor="start" fill="#7A6F66" font-size="14">default · replays, fails if missing</text>
+            <line x1="400" y1="50" x2="790" y2="50" stroke="#E6D9C3" stroke-width="2"/>
+            <g><g><path d="M610,22 h35.88 l10.12,10.12 v45.88 h-46 z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5"/><path d="M645.88,22 v10.12 h10.12" fill="none" stroke="#1F1A17" stroke-width="1.5"/><text class="mono " x="615.52" y="34.32" text-anchor="start" fill="#0C8599" font-size="8" font-weight="bold">.har</text><rect x="615.52" y="42.2" width="32.2" height="3.0" rx="2" fill="#E6D9C3"/><rect x="615.52" y="48.9" width="23.0" height="3.0" rx="2" fill="#E6D9C3"/></g></g>
+            <g opacity="0.3"><g><rect x="790" y="26" width="126" height="48" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="853.0" y="56.0" text-anchor="middle" fill="#FFFDF7" font-size="16" font-weight="bold">API</text></g></g>
+            <g class="mv d-go-har"><rect x="376.0" y="37" width="58" height="26" rx="13" fill="#0C8599"/><text class="mono " x="405" y="55" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
+            <g class="mv d-back-har"><rect x="546.0" y="37" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="575" y="55" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
+        </g>
+        <g class="fragment">
+            <rect x="20" y="102" width="920" height="76" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+            <text class="mono " x="44" y="135" text-anchor="start" fill="#1F1A17" font-size="20" font-weight="bold">missing</text>
+            <text x="44" y="160" text-anchor="start" fill="#7A6F66" font-size="14">replays, records what is missing</text>
+            <line x1="400" y1="140" x2="790" y2="140" stroke="#E6D9C3" stroke-width="2"/>
+            <g><g><path d="M610,112 h35.88 l10.12,10.12 v45.88 h-46 z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5"/><path d="M645.88,112 v10.12 h10.12" fill="none" stroke="#1F1A17" stroke-width="1.5"/><text class="mono " x="615.52" y="124.32" text-anchor="start" fill="#0C8599" font-size="8" font-weight="bold">.har</text><rect x="615.52" y="132.2" width="32.2" height="3.0" rx="2" fill="#E6D9C3"/><rect x="615.52" y="138.9" width="23.0" height="3.0" rx="2" fill="#E6D9C3"/></g></g>
+            <g><g><rect x="790" y="116" width="126" height="48" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="853.0" y="146.0" text-anchor="middle" fill="#FFFDF7" font-size="16" font-weight="bold">API</text></g></g>
+            <g class="mv d-go-har-fast"><rect x="376.0" y="127" width="58" height="26" rx="13" fill="#E8590C"/><text class="mono " x="405" y="145" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
+            <g class="mv d-har-api"><rect x="546.0" y="127" width="58" height="26" rx="13" fill="#E8590C"/><text class="mono " x="575" y="145" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
+            <g class="mv d-back-api"><rect x="736.0" y="127" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="765" y="145" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
+            <text class="d-mark" x="690" y="126" text-anchor="start" fill="#E67700" font-size="14" font-weight="bold">+ 1 entry</text>
+        </g>
+        <g class="fragment">
+            <rect x="20" y="192" width="920" height="76" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+            <text class="mono " x="44" y="225" text-anchor="start" fill="#1F1A17" font-size="20" font-weight="bold">record</text>
+            <text x="44" y="250" text-anchor="start" fill="#7A6F66" font-size="14">records everything again</text>
+            <line x1="400" y1="230" x2="790" y2="230" stroke="#E6D9C3" stroke-width="2"/>
+            <g><g><path d="M610,202 h35.88 l10.12,10.12 v45.88 h-46 z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5"/><path d="M645.88,202 v10.12 h10.12" fill="none" stroke="#1F1A17" stroke-width="1.5"/><text class="mono " x="615.52" y="214.32" text-anchor="start" fill="#0C8599" font-size="8" font-weight="bold">.har</text><rect x="615.52" y="222.2" width="32.2" height="3.0" rx="2" fill="#E6D9C3"/><rect x="615.52" y="228.9" width="23.0" height="3.0" rx="2" fill="#E6D9C3"/></g></g>
+            <g><g><rect x="790" y="206" width="126" height="48" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="853.0" y="236.0" text-anchor="middle" fill="#FFFDF7" font-size="16" font-weight="bold">API</text></g></g>
+            <g class="mv d-go-api"><rect x="376.0" y="217" width="58" height="26" rx="13" fill="#E8590C"/><text class="mono " x="405" y="235" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
+            <g class="mv d-back-api"><rect x="736.0" y="217" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="765" y="235" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
+            <text class="d-mark" x="690" y="216" text-anchor="start" fill="#E67700" font-size="14" font-weight="bold">rewritten</text>
+        </g>
+        <g class="fragment">
+            <rect x="20" y="282" width="920" height="76" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+            <text class="mono " x="44" y="315" text-anchor="start" fill="#1F1A17" font-size="20" font-weight="bold">passthrough</text>
+            <text x="44" y="340" text-anchor="start" fill="#7A6F66" font-size="14">real requests, no file</text>
+            <line x1="400" y1="320" x2="790" y2="320" stroke="#E6D9C3" stroke-width="2"/>
+            <g opacity="0.25"><g><path d="M610,292 h35.88 l10.12,10.12 v45.88 h-46 z" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5"/><path d="M645.88,292 v10.12 h10.12" fill="none" stroke="#1F1A17" stroke-width="1.5"/><text class="mono " x="615.52" y="304.32" text-anchor="start" fill="#0C8599" font-size="8" font-weight="bold">.har</text><rect x="615.52" y="312.2" width="32.2" height="3.0" rx="2" fill="#E6D9C3"/><rect x="615.52" y="318.9" width="23.0" height="3.0" rx="2" fill="#E6D9C3"/></g></g>
+            <g><g><rect x="790" y="296" width="126" height="48" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="853.0" y="326.0" text-anchor="middle" fill="#FFFDF7" font-size="16" font-weight="bold">API</text></g></g>
+            <g class="mv d-go-api"><rect x="376.0" y="307" width="58" height="26" rx="13" fill="#7A6F66"/><text class="mono " x="405" y="325" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">GET</text></g>
+            <g class="mv d-back-api"><rect x="736.0" y="307" width="58" height="26" rx="13" fill="#2B8A3E"/><text class="mono " x="765" y="325" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="bold">200</text></g>
+        </g>
     </svg>
     <aside class="notes">
         Four possible values. replay, the default: we read the file, and a missing request fails without touching the network. missing: we replay what exists and only record what is missing. record: we make every real request again and rewrite the files. passthrough: real requests, files neither read nor written.
