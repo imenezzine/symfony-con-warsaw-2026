@@ -1,0 +1,22 @@
+<section>
+    <h3>Failures you cannot order</h3>
+    <pre><code class="language-php" data-trim data-line-numbers="1-10|2-3|4-5|6-7">
+$client = new MockHttpClient([
+    // The provider is down
+    new JsonMockResponse(['error' => 'unavailable'], ['http_code' => 503]),
+    // The provider never answers: an empty chunk is an idle timeout
+    new MockResponse((static function () { yield ''; })()),
+    // The connection fails before any response
+    new MockResponse(info: ['error' => 'Could not resolve host']),
+]);
+
+$service = new PaymentService($client);
+    </code></pre>
+    <p class="fragment callout">
+        A real API will not give you a 503 or a timeout when you ask for one.
+        Here the handwritten mock is the <b>right</b> tool: the response is short, and it is the scenario itself.
+    </p>
+    <aside class="notes">
+        Earlier I said handwritten mocks drift from the API. That is true for the 40 fields of a happy-path payload. For failures, the mock is tiny and it is exactly what we want to test: does the service retry, fall back, show a clean error? An empty string yielded by the body simulates an idle timeout, and the error info makes the transport fail before any response, as a DNS failure would.
+    </aside>
+</section>

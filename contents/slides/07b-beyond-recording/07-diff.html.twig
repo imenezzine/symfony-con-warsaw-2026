@@ -1,0 +1,21 @@
+<section>
+    <h3>Then refresh, and read the diff</h3>
+    <pre><code class="language-bash" data-trim>
+SYMFONY_HTTP_RECORDER=record vendor/bin/phpunit --group third-party
+git diff tests/records/
+    </code></pre>
+    <pre class="fragment"><code class="language-diff" data-trim>
+   "content": {
+     "mimeType": "application/json",
+-    "text": "{\"status\":\"succeeded\",\"amount\":4200}"
++    "text": "{\"status\":\"paid\",\"amount\":{\"value\":4200}}"
+   }
+    </code></pre>
+    <p class="fragment callout" style="font-size: 0.6em;">
+        An unchanged exchange keeps its exact place in the file: the diff only shows <b>what the API changed</b>.
+        Review it, adapt the code, commit the new contract.
+    </p>
+    <aside class="notes">
+        When the scheduled job goes red, record mode rewrites the files of the tests that ran. Identical entries are kept as they were, so the pull request shows exactly the breaking change: here the status was renamed and the amount became an object. The contract change becomes a code review. If the provider publishes an OpenAPI description, a schema validator can go one step further, but that is outside Symfony.
+    </aside>
+</section>

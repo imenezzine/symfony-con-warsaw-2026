@@ -818,3 +818,13 @@ $anim-font-mono: 'JetBrains Mono', ui-monospace, monospace;
 @include a-window(i-stop, 8s, 29, 42);
 @include a-travel(i-file, 8s, 44, 60, -186, 75);
 @include a-travel(i-back, 8s, 66, 84, -175, -38);
+
+/* Texte à la place du gif dans la fenêtre de la cassette */
+.reveal .part-word {
+    margin: 0;
+    padding: 0 0.6em;
+    color: $paper;
+    font-family: $font-mono;
+    font-size: 0.6em;
+    white-space: nowrap;
+}

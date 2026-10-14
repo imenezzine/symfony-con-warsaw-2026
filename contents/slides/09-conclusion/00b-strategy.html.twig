@@ -1,0 +1,40 @@
+<section>
+    <h2>Which tool, when?</h2>
+    <table class="compare" style="font-size: 0.5em;">
+        <thead>
+            <tr>
+                <th style="width: 32%">To test…</th>
+                <th>Use</th>
+                <th style="width: 22%">Runs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="fragment">
+                <td>The normal flow with a third-party API</td>
+                <td><code>#[UseRecord]</code>, replayed from the <code>.har</code> file</td>
+                <td>Every commit</td>
+            </tr>
+            <tr class="fragment">
+                <td>Errors, timeouts, rare edge cases</td>
+                <td><code>MockHttpClient</code> + <code>MockResponse</code></td>
+                <td>Every commit</td>
+            </tr>
+            <tr class="fragment">
+                <td>The request your code sends</td>
+                <td>Matching on replay, or a <code>MockHttpClient</code> callback</td>
+                <td>Every commit</td>
+            </tr>
+            <tr class="fragment">
+                <td>The API has not changed</td>
+                <td><code>passthrough</code> job, then <code>record</code> and review the diff</td>
+                <td>On a schedule</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="fragment callout" style="font-size: 0.6em; margin-top: 0.6em;">
+        <b>Fast on every commit, real on a schedule.</b>
+    </p>
+    <aside class="notes">
+        This is the strategy in one table. Recordings for the happy paths, short handwritten mocks for the failures, and a scheduled check against the real services so the recordings do not lie for long.
+    </aside>
+</section>

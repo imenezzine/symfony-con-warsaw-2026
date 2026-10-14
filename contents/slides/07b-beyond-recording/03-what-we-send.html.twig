@@ -1,0 +1,21 @@
+<section>
+    <h3>Check what you send</h3>
+    <pre><code class="language-php" data-trim data-line-numbers="1-9|2-4|6-8">
+$client = new MockHttpClient(function (string $method, string $url, array $options) {
+    $this->assertSame('POST', $method);
+    $this->assertSame('https://api.example.com/refunds', $url);
+    $this->assertSame('{"payment":"pay_123","amount":4200}', $options['body']);
+
+    return new JsonMockResponse(['id' => 're_1', 'status' => 'pending'], [
+        'http_code' => 201,
+    ]);
+});
+    </code></pre>
+    <p class="fragment callout" style="font-size: 0.6em;">
+        On replay, the matcher already compares method, URL and body with the recording.
+        The callback is for the cases you build by hand.
+    </p>
+    <aside class="notes">
+        The response factory can be a callable: it receives the method, the full URL and the options, with a json option already encoded into the body. That is where we assert the request our code builds. With a recording, the matching we saw earlier plays the same role: a request that differs from the recorded one does not find its entry.
+    </aside>
+</section>

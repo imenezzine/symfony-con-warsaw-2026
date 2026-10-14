@@ -1,0 +1,20 @@
+<section>
+    <h3>What a replayed test proves</h3>
+    <div class="card-row">
+        <div class="card green fragment">
+            <h4>It proves</h4>
+            <p>Your code handles the response <b>as the API sent it on recording day</b>: real fields, real formats, real headers.</p>
+        </div>
+        <div class="card amber fragment">
+            <h4>It does not prove</h4>
+            <p>That the API <b>still</b> answers that way. If the provider renames a field tomorrow, the replay stays green.</p>
+        </div>
+    </div>
+    <p class="fragment callout warn" style="margin-top: 0.8em;">
+        Better than a handwritten mock, but the same blind spot.
+        So we check the contract <b>on a schedule</b>, not on every commit.
+    </p>
+    <aside class="notes">
+        Let us be honest about the limit. The recording removes the imagination from the mock, but not the time. The fix is not to call the real API on every commit, it is to check it regularly, where a red result means one thing: the provider changed.
+    </aside>
+</section>

@@ -1,0 +1,26 @@
+<section>
+    <h3>Real services, once a week</h3>
+    <pre><code class="language-yaml" data-trim data-line-numbers="1-12|1-3|9-12">
+on:
+  schedule:
+    - cron: '0 3 * * 1'   # every Monday, 3 a.m.
+
+jobs:
+  api-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout, composer install…
+      - run: vendor/bin/phpunit --group third-party
+        env:
+          SYMFONY_HTTP_RECORDER: passthrough
+          PAYMENT_API_KEY: {% verbatim %}${{ secrets.PAYMENT_API_KEY }}{% endverbatim %}
+    </code></pre>
+    <ul style="font-size: 0.6em;">
+        <li class="fragment"><code>passthrough</code>: real calls, <code>.har</code> files neither read nor written</li>
+        <li class="fragment">Red job = <b>the provider changed</b>, before production finds out</li>
+        <li class="fragment">The API keys live in this job only, never in the pull request pipeline</li>
+    </ul>
+    <aside class="notes">
+        No new tool: the tests that replay on every commit run once a week against the real services, by switching one environment variable. Tag them with a group so this job only runs the tests that talk to third parties. The pull request pipeline keeps replaying, without secrets and without the network.
+    </aside>
+</section>
