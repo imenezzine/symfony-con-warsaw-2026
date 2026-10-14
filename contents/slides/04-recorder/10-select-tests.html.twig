@@ -2,7 +2,7 @@
     <h3>Pick the tests with PHPUnit</h3>
     <pre><code class="language-bash" data-trim>
 # record a class again after an API change
-SYMFONY_HTTP_RECORDER=record vendor/bin/phpunit tests/Controller/GetRandomControllerTest.php
+SYMFONY_HTTP_RECORDER=record vendor/bin/phpunit --filter GetRandomControllerTest
 
 # add what is missing in a group, without touching the rest
 SYMFONY_HTTP_RECORDER=missing vendor/bin/phpunit --group payment
