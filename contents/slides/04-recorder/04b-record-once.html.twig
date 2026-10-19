@@ -1,5 +1,5 @@
 <section data-state="rec">
-    <p class="eyebrow">Step 4</p>
+    <p class="eyebrow">Step 3</p>
     <h3>Record once</h3>
     <svg class="anim" viewBox="0 0 960 250" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 300px;" role="img" aria-label="Animation: a terminal types SYMFONY_HTTP_RECORDER=missing vendor/bin/phpunit --filter testRandom, the test passes and a testRandom.har file appears">
         <rect x="0" y="0" width="960" height="250" rx="14" fill="#2B2321"/>
@@ -16,6 +16,6 @@
         <li class="fragment">Next runs and CI: <code>SYMFONY_HTTP_RECORDER=replay</code> (the default when it is not set), replay, zero network</li>
     </ol>
     <aside class="notes">
-        Step 4: run the test once with SYMFONY_HTTP_RECORDER=missing. The real request goes out, and its response is written to the HAR file next to the test, in a directory named after the class. Review that file, it is readable JSON, commit it, and from then on every run replays it, CI included. Without the environment variable, we are in replay mode.
+        Step 3: run the test once with SYMFONY_HTTP_RECORDER=missing. The real request goes out, and its response is written to the HAR file next to the test, in a directory named after the class. Review that file, it is readable JSON, commit it, and from then on every run replays it, CI included. Without the environment variable, we are in replay mode.
     </aside>
 </section>
