@@ -782,6 +782,8 @@ $anim-font-mono: 'JetBrains Mono', ui-monospace, monospace;
 @include a-window(c-dot, 9s, 50);
 @include a-window(c-ok, 9s, 58);
 @include a-window(c-file, 9s, 68);
+/* the terminal types once and keeps its final picture */
+.reveal .anim :is(.c-type, .c-dot, .c-ok, .c-file) { animation-iteration-count: 1; }
 
 /* D · the four modes */
 @include a-travel(d-go-har, 8s, 5, 25, 170);

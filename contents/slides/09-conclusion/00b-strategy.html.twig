@@ -26,15 +26,15 @@
             </tr>
             <tr class="fragment">
                 <td>The API has not changed</td>
-                <td><code>passthrough</code> job, then <code>record</code> and review the diff</td>
-                <td>On a schedule</td>
+                <td><code>passthrough</code> in dev, then <code>record</code> and review the diff</td>
+                <td>Regularly, by hand</td>
             </tr>
         </tbody>
     </table>
     <p class="fragment callout" style="font-size: 0.6em; margin-top: 0.6em;">
-        <b>Fast on every commit, real on a schedule.</b>
+        <b>Offline on every commit, real by hand in dev.</b>
     </p>
     <aside class="notes">
-        This is the strategy in one table. Recordings for the happy paths, short handwritten mocks for the failures, and a scheduled check against the real services so the recordings do not lie for long.
+        This is the strategy in one table. Recordings for the happy paths, short handwritten mocks for the failures, and a regular manual check against the real services, from a developer machine and never in CI, so the recordings do not lie for long.
     </aside>
 </section>

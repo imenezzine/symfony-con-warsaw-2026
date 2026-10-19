@@ -12,9 +12,9 @@
     </div>
     <p class="fragment callout warn" style="margin-top: 0.8em;">
         Better than a handwritten mock, but the same blind spot.
-        So we check the contract <b>on a schedule</b>, not on every commit.
+        So we check the contract <b>regularly, by hand, in dev</b>, never in CI.
     </p>
     <aside class="notes">
-        Let us be honest about the limit. The recording removes the imagination from the mock, but not the time. The fix is not to call the real API on every commit, it is to check it regularly, where a red result means one thing: the provider changed.
+        Let us be honest about the limit. The recording removes the imagination from the mock, but not the time. The fix is not to call the real API in CI, it is to check it regularly by hand, from a developer machine, where a red result means one thing: the provider changed.
     </aside>
 </section>

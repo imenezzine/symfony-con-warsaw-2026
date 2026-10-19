@@ -1,6 +1,6 @@
 <section>
     <h3>The real API, or a made-up response?</h3>
-    <svg class="anim" viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 430px;" role="img" aria-label="Animation: on the left a real API call that ends in a timeout after 5 seconds, on the right a JSON mock typed by hand that never ends">
+    <svg class="anim" viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 430px;" role="img" aria-label="Animation: on the left a real API call that ends in a timeout after 5 seconds and is billed, on the right a JSON mock typed by hand that never ends">
         <rect x="20" y="20" width="440" height="340" rx="12" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
         <text x="240" y="62" text-anchor="middle" fill="#1F1A17" font-size="24" font-weight="bold">Real API</text>
         <g><rect x="175" y="86" width="130" height="54" rx="10" fill="#2B2321" stroke="#2B2321" stroke-width="1.5"/><text x="240.0" y="119.0" text-anchor="middle" fill="#FFFDF7" font-size="18" font-weight="bold">API</text></g>
@@ -11,7 +11,7 @@
         <text class="rm-hide b-t2" x="240" y="292" text-anchor="middle" fill="#1F1A17" font-size="34" font-weight="bold">3.0 s</text>
         <text class="rm-hide b-t3" x="240" y="292" text-anchor="middle" fill="#1F1A17" font-size="34" font-weight="bold">4.5 s</text>
         <text class="b-timeout" x="240" y="292" text-anchor="middle" fill="#C92A2A" font-size="34" font-weight="bold">5.0 s</text>
-        <text class="b-timeout" x="240" y="332" text-anchor="middle" fill="#C92A2A" font-size="17" font-weight="bold">timeout · flaky · slow</text>
+        <text class="b-timeout" x="240" y="332" text-anchor="middle" fill="#C92A2A" font-size="17" font-weight="bold">timeout · flaky · billed per call</text>
         <rect x="500" y="20" width="440" height="340" rx="12" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
         <text x="720" y="62" text-anchor="middle" fill="#1F1A17" font-size="24" font-weight="bold">Handwritten mock</text>
         <text class="mono " x="524" y="118" text-anchor="start" fill="#1F1A17" font-size="16">new MockResponse('{&quot;id&quot;: 42,</text>
@@ -27,6 +27,6 @@
         <text class="b-drift" x="720" y="332" text-anchor="middle" fill="#E67700" font-size="17" font-weight="bold">tedious · drifts from the real API</text>
     </svg>
     <aside class="notes">
-        When we write the test, we face a choice: call the real API, or make the response up. On the left, the real API that ends in a timeout. On the right, the mock we keep typing by hand.
+        When we write the test, we face a choice: call the real API, or make the response up. On the left, the real API that ends in a timeout. And it can cost money: paying APIs like OpenAI, or a payment provider, bill every call, so every test run has a price. On the right, the mock we keep typing by hand.
     </aside>
 </section>

@@ -25,6 +25,11 @@
                 <td class="good">Stable</td>
             </tr>
             <tr class="fragment">
+                <td>Cost</td>
+                <td class="bad">Paying APIs bill every call (OpenAI, payments…)</td>
+                <td class="good">Free</td>
+            </tr>
+            <tr class="fragment">
                 <td>Secrets</td>
                 <td class="bad">API keys in CI</td>
                 <td class="good">None</td>
@@ -37,6 +42,6 @@
         </tbody>
     </table>
     <aside class="notes">
-        Real calls: realistic, but slow, flaky, and they need secrets in CI. Mocks: fast, but we end up testing our imagination rather than the API. The day the API changes, the test stays green and production breaks.
+        Real calls: realistic, but slow, flaky, they can cost money with paying APIs, and they need secrets in CI. Mocks: fast, but we end up testing our imagination rather than the API. The day the API changes, the test stays green and production breaks.
     </aside>
 </section>
