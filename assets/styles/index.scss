@@ -462,12 +462,14 @@ figcaption {
 /* Remerciements à quatre : cartes plus étroites */
 .reveal .thanks-row {
     gap: 20px;
-    width: 104%;
-    margin-left: -2%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .reveal .thanks-row .thanks-card {
     min-width: 0;
+    max-width: 280px;
     padding: 22px 10px 16px;
 
     img {
@@ -477,6 +479,7 @@ figcaption {
 
     h4 {
         font-size: 0.58em;
+        white-space: nowrap;
     }
 
     .thanks-handle {

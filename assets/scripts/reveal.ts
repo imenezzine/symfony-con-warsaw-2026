@@ -25,4 +25,6 @@ const deck = new Reveal({
 
 deck.initialize({
     navigationMode: 'linear',
+    width: 1280,
+    height: 720,
 });
