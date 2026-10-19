@@ -1,7 +1,7 @@
 import { dag, Workspace, Directory, object, func } from "@dagger.io/dagger"
 
 @object()
-export class AfupMeetupOct2026 {
+export class SymfonyConWarsaw2026 {
   source: Directory
 
   constructor(ws: Workspace) {

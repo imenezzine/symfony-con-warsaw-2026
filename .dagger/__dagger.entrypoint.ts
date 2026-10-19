@@ -4,7 +4,7 @@
 import { Context, Error as DaggerError, FunctionCachePolicy, TypeDefKind, connection, dag, getRegisteredClass } from "@dagger.io/dagger"
 import * as __dagger from "@dagger.io/dagger"
 import * as telemetry from "@dagger.io/dagger/telemetry"
-import { AfupMeetupOct2026 } from "./src/index"
+import { SymfonyConWarsaw2026 } from "./src/index"
 
 // Load a core/dependency object from its ID via node(id:) and wrap it in the
 // matching generated client class. Mirrors the SDK runtime loader; replaces the
@@ -42,8 +42,8 @@ function formatError(e: unknown): DaggerError {
   }
 }
 
-function rebuildAfupMeetupOct2026(state: any): AfupMeetupOct2026 {
-  const __obj = Object.assign(Object.create(AfupMeetupOct2026.prototype), state ?? {})
+function rebuildSymfonyConWarsaw2026(state: any): SymfonyConWarsaw2026 {
+  const __obj = Object.assign(Object.create(SymfonyConWarsaw2026.prototype), state ?? {})
   if (state) {
     if (state["source"] !== undefined && state["source"] !== null) {
       __obj["source"] = __loadCoreObject(state["source"], "Directory")
@@ -52,7 +52,7 @@ function rebuildAfupMeetupOct2026(state: any): AfupMeetupOct2026 {
   return __obj
 }
 
-async function serializeAfupMeetupOct2026(__obj: AfupMeetupOct2026): Promise<any> {
+async function serializeSymfonyConWarsaw2026(__obj: SymfonyConWarsaw2026): Promise<any> {
   if (__obj === null || __obj === undefined) return __obj
   const __state: any = { ...__obj }
   if ((__obj as any)["source"] !== undefined && (__obj as any)["source"] !== null) {
@@ -65,10 +65,10 @@ async function serializeAfupMeetupOct2026(__obj: AfupMeetupOct2026): Promise<any
 
 async function register(): Promise<string> {
   let mod = dag.module_()
-  let obj_AfupMeetupOct2026 = dag.typeDef().withObject("AfupMeetupOct2026", { sourceMap: dag.sourceMap("src/index.ts", 4, 14) })
-  obj_AfupMeetupOct2026 = obj_AfupMeetupOct2026.withFunction(dag.function_("build", dag.typeDef().withObject("Directory")).withDescription("Build the slide deck. publicPath sets the base path for served assets (e.g. \"/repo-name/\" on GitHub Pages).").withSourceMap(dag.sourceMap("src/index.ts", 15, 3)).withArg("publicPath", dag.typeDef().withKind(TypeDefKind.StringKind), { defaultValue: JSON.stringify("/") as string & { __JSON: never }, sourceMap: dag.sourceMap("src/index.ts", 15, 9) }))
-  obj_AfupMeetupOct2026 = obj_AfupMeetupOct2026.withConstructor(dag.function_("", obj_AfupMeetupOct2026).withArg("ws", dag.typeDef().withObject("Workspace"), { sourceMap: dag.sourceMap("src/index.ts", 7, 15) }))
-  mod = mod.withObject(obj_AfupMeetupOct2026)
+  let obj_SymfonyConWarsaw2026 = dag.typeDef().withObject("SymfonyConWarsaw2026", { sourceMap: dag.sourceMap("src/index.ts", 4, 14) })
+  obj_SymfonyConWarsaw2026 = obj_SymfonyConWarsaw2026.withFunction(dag.function_("build", dag.typeDef().withObject("Directory")).withDescription("Build the slide deck. publicPath sets the base path for served assets (e.g. \"/repo-name/\" on GitHub Pages).").withSourceMap(dag.sourceMap("src/index.ts", 15, 3)).withArg("publicPath", dag.typeDef().withKind(TypeDefKind.StringKind), { defaultValue: JSON.stringify("/") as string & { __JSON: never }, sourceMap: dag.sourceMap("src/index.ts", 15, 9) }))
+  obj_SymfonyConWarsaw2026 = obj_SymfonyConWarsaw2026.withConstructor(dag.function_("", obj_SymfonyConWarsaw2026).withArg("ws", dag.typeDef().withObject("Workspace"), { sourceMap: dag.sourceMap("src/index.ts", 7, 15) }))
+  mod = mod.withObject(obj_SymfonyConWarsaw2026)
   return await mod.id()
 }
 
@@ -79,23 +79,23 @@ async function invoke(
   args: Record<string, any>,
 ): Promise<any> {
   switch (parentName) {
-    case "AfupMeetupOct2026": {
+    case "SymfonyConWarsaw2026": {
       switch (fnName) {
 
         case "": {
           const __arg_ws = args["ws"] === undefined || args["ws"] === null ? args["ws"] : __loadCoreObject(args["ws"], "Workspace")
-          const __result = await new AfupMeetupOct2026(__arg_ws) as unknown as AfupMeetupOct2026
-          return await serializeAfupMeetupOct2026(__result)
+          const __result = await new SymfonyConWarsaw2026(__arg_ws) as unknown as SymfonyConWarsaw2026
+          return await serializeSymfonyConWarsaw2026(__result)
         }
 
         case "build": {
-          const __parent = rebuildAfupMeetupOct2026(parentJson)
+          const __parent = rebuildSymfonyConWarsaw2026(parentJson)
           const __arg_publicPath = args["publicPath"]
           const __result = await __parent.build(__arg_publicPath)
           return await (__result).id()
         }
         default:
-          throw new Error(`unknown function ${fnName} on AfupMeetupOct2026`)
+          throw new Error(`unknown function ${fnName} on SymfonyConWarsaw2026`)
       }
     }
     default:
