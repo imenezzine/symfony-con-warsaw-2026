@@ -1,0 +1,54 @@
+<section>
+    <h3>Passthrough mode</h3>
+    <svg viewBox="0 0 960 360" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 440px;" font-family="sans-serif" role="img" aria-label="In passthrough mode, the request goes to the real API and the real response comes back to the test; the HAR file is neither read nor written">
+        <defs>
+            <marker id="arr-pt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#7A6F66"/>
+            </marker>
+            <marker id="arr-pt-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#2B8A3E"/>
+            </marker>
+        </defs>
+
+        <!-- Outbound -->
+        <rect x="20" y="80" width="180" height="80" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+        <text x="110" y="126" text-anchor="middle" fill="#1F1A17" font-size="18" font-weight="bold">Your test</text>
+
+        <rect x="260" y="80" width="220" height="80" rx="10" fill="#FFFDF7" stroke="#E8590C" stroke-width="2.5" stroke-dasharray="8 5"/>
+        <text x="370" y="116" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">RecorderHttpClient</text>
+        <text x="370" y="142" text-anchor="middle" fill="#7A6F66" font-size="14">lets everything through</text>
+
+        <rect x="740" y="80" width="200" height="80" rx="10" fill="#2B2321"/>
+        <text x="840" y="126" text-anchor="middle" fill="#FFFDF7" font-size="18" font-weight="bold">Third-party API</text>
+
+        <line class="flow" x1="200" y1="120" x2="256" y2="120" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-pt)"/>
+        <line class="flow" x1="480" y1="120" x2="736" y2="120" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-pt)"/>
+        <text x="608" y="110" text-anchor="middle" fill="#7A6F66" font-size="15">real HTTP call</text>
+
+        <!-- Return -->
+        <g class="fragment">
+            <path class="flow" d="M840,80 V40 H110 V76" fill="none" stroke="#2B8A3E" stroke-width="2" marker-end="url(#arr-pt-green)"/>
+            <rect x="350" y="26" width="260" height="28" fill="#FFFDF7"/>
+            <text x="480" y="46" text-anchor="middle" fill="#2B8A3E" font-size="15" font-weight="bold">the real response comes back untouched</text>
+        </g>
+
+        <!-- No file -->
+        <g class="fragment">
+            <line x1="370" y1="160" x2="370" y2="246" stroke="#BFB3A6" stroke-width="2" stroke-dasharray="4 4"/>
+            <rect x="260" y="250" width="220" height="84" rx="10" fill="#FFFDF7" stroke="#BFB3A6" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <text x="370" y="284" text-anchor="middle" fill="#BFB3A6" font-size="17" font-weight="bold">testX.har</text>
+            <text x="370" y="310" text-anchor="middle" fill="#C92A2A" font-size="14" font-weight="bold">not read, not written</text>
+            <path d="M346,188 l48,48 M394,188 l-48,48" stroke="#C92A2A" stroke-width="5" stroke-linecap="round"/>
+
+            <rect x="540" y="250" width="400" height="84" rx="10" fill="#FFF4E6" stroke="#E67700" stroke-width="1.5"/>
+            <text x="740" y="284" text-anchor="middle" fill="#1F1A17" font-size="16" font-weight="bold">Also the mode without #[UseRecord]</text>
+            <text x="740" y="310" text-anchor="middle" fill="#7A6F66" font-size="14">the other tests do not see the recorder</text>
+        </g>
+    </svg>
+    <p class="fragment callout warn" style="font-size: 0.55em; margin-top: 0.4em;">
+        Real calls, real keys, real costs: use it by hand, in dev, to check the real API. <b>Never in CI.</b>
+    </p>
+    <aside class="notes">
+        Passthrough is the simplest mode: the recorder does nothing. The request goes to the real API, the real response comes back to the test, and the HAR file is neither read nor written. It is also what happens to every test without the UseRecord attribute, so enabling the recorder does not change the other tests. With the environment variable, it is useful for one thing: checking by hand, from a developer machine, that the real services still answer the way the recordings say. Never in CI: real keys, real costs, real payments.
+    </aside>
+</section>

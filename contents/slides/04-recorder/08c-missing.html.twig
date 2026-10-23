@@ -1,0 +1,63 @@
+<section data-state="rec">
+    <h3>Missing mode</h3>
+    <svg viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-height: 440px;" font-family="sans-serif" role="img" aria-label="In missing mode, the request is compared with the HAR file; when found, the response is replayed without the network, when missing, the real call is made, the test gets the real response, and a redacted entry is appended to the file">
+        <defs>
+            <marker id="arr-mis" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#7A6F66"/>
+            </marker>
+            <marker id="arr-mis-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#2B8A3E"/>
+            </marker>
+            <marker id="arr-mis-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#E67700"/>
+            </marker>
+        </defs>
+
+        <!-- Request -->
+        <rect x="20" y="30" width="170" height="80" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+        <text x="105" y="76" text-anchor="middle" fill="#1F1A17" font-size="18" font-weight="bold">Your test</text>
+
+        <rect x="230" y="30" width="210" height="80" rx="10" fill="#FFE8D6" stroke="#E8590C" stroke-width="2.5"/>
+        <text x="335" y="76" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">RecorderHttpClient</text>
+
+        <rect x="480" y="30" width="270" height="80" rx="10" fill="#E3F6F8" stroke="#0C8599" stroke-width="1.5"/>
+        <text x="615" y="64" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Already in the file?</text>
+        <text x="615" y="90" text-anchor="middle" fill="#7A6F66" font-size="14">redacted, then method, URL, body</text>
+
+        <rect x="790" y="38" width="150" height="64" rx="10" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5" stroke-dasharray="6 4"/>
+        <text x="865" y="76" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">testX.har</text>
+
+        <line class="flow" x1="190" y1="70" x2="226" y2="70" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-mis)"/>
+        <line class="flow" x1="440" y1="70" x2="476" y2="70" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-mis)"/>
+        <line class="flow" x1="790" y1="70" x2="754" y2="70" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-mis)"/>
+
+        <!-- Found -->
+        <g class="fragment">
+            <path class="flow" d="M540,110 V210 H434" fill="none" stroke="#2B8A3E" stroke-width="2" marker-end="url(#arr-mis-green)"/>
+            <text x="550" y="166" fill="#2B8A3E" font-size="14" font-weight="bold">found</text>
+            <rect x="20" y="172" width="410" height="76" rx="10" fill="#EBFBEE" stroke="#2B8A3E" stroke-width="1.5"/>
+            <text x="225" y="204" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Replayed from the file</text>
+            <text x="225" y="230" text-anchor="middle" fill="#2B8A3E" font-size="15">no network call, like replay</text>
+        </g>
+
+        <!-- Missing -->
+        <g class="fragment">
+            <path class="flow" d="M700,110 V168" fill="none" stroke="#E67700" stroke-width="2" marker-end="url(#arr-mis-amber)"/>
+            <text x="710" y="146" fill="#E67700" font-size="14" font-weight="bold">missing</text>
+            <rect x="620" y="172" width="320" height="76" rx="10" fill="#2B2321"/>
+            <text x="780" y="204" text-anchor="middle" fill="#FFFDF7" font-size="17" font-weight="bold">Third-party API</text>
+            <text x="780" y="230" text-anchor="middle" fill="#FFA94D" font-size="15">the real call goes out</text>
+
+            <line class="flow" x1="780" y1="248" x2="780" y2="286" stroke="#E67700" stroke-width="2" marker-end="url(#arr-mis-amber)"/>
+            <rect x="460" y="290" width="480" height="76" rx="10" fill="#FFF4E6" stroke="#E67700" stroke-width="1.5"/>
+            <text x="700" y="322" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">The test gets the real response</text>
+            <text x="700" y="348" text-anchor="middle" fill="#E67700" font-size="15">+ a redacted entry appended to testX.har</text>
+        </g>
+    </svg>
+    <p class="fragment subtitle" style="font-size: 0.55em; margin-top: 0;">
+        Existing entries stay as they are: only what is missing is added.
+    </p>
+    <aside class="notes">
+        Missing mode is replay with one difference. The request is redacted and compared with the file, exactly like in replay. Found: the response is replayed, no network. Missing: instead of an exception, the real call goes out, the test gets the real response, and a redacted copy is appended to the file. The entries already in the file are not touched. It is the mode for the first recording, or when a test makes a new call.
+    </aside>
+</section>
