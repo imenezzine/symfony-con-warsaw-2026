@@ -14,6 +14,12 @@ $client->request('GET', 'https://api.example.com/exports/42')->toArray(); // 200
         <li class="fragment"><code>RetryableHttpClient</code> cancels the failed attempt: a 500 then a 200 only records the 200</li>
     </ul>
     <aside class="notes">
-        At first, a new entry overwrote the previous one: recording a polling loop was impossible. Then the cursor lived in the client: in a WebTestCase, the kernel is rebooted between two requests, new container, new client, and we replayed 202, 202. Last case found during review: in missing mode, the entry we had just recorded was served again to the next request, and the polling never finished.
+        <p>Last matching topic, and the one that gave us the most trouble.</p>
+        <p>[click] A very common case: an asynchronous export. You ask for export 42, and the API answers 202, "not ready yet". You ask again, exactly the same request, and this time it's 200, it's ready. Same request, two different responses.</p>
+        <p>[click] On replay, we serve 202, then 200. And if the code keeps polling, we serve the last response again, 200.</p>
+        <p>[click] For that to work: entries are appended to the file in order, never overwritten, and replayed in order.</p>
+        <p>[click] Second point: the replay cursor, which knows where we are, belongs to the test, not to the client. Why? Because in a WebTestCase, KernelBrowser reboots the kernel between two requests. New container, so new client. If the cursor lived in the client, we'd replay 202, then 202, then 202… forever.</p>
+        <p>[click] And third point: RetryableHttpClient cancels the failed attempt. If the API answers 500, then 200 on the retry, only the 200 is recorded.</p>
+        <p>Each of these points comes from a real bug found during the review. At first, a new entry overwrote the old one: impossible to record a polling loop. Then the cursor lived in the client: the kernel reboot problem. And the last one, found in review: in missing mode, the entry we had just recorded was served again to the next request, and the polling never ended. Hence the rule: in missing mode, an entry we've just recorded counts as already served.</p>
     </aside>
 </section>

@@ -41,6 +41,8 @@
         </g>
     </svg>
     <aside class="notes">
-        The recorder is plugged in as close to the network as possible, like the mock transport. Every client, default and scoped, goes through it. The decorated client keeps its own default options: the request is only normalised to compute its key. Without the attribute on the test, it is in passthrough mode: it lets everything through.
+        <p>Let's step back and look at the architecture. On the left, your code: a service, a controller. It calls http_client, possibly through decorators: a scoped client, a retry. Then comes RecorderHttpClient, the new one. Then the transport, curl or amp. And finally the third-party API.</p>
+        <p>[click] The recorder is the innermost decorator of http_client.transport. Three consequences. It sees absolute URLs, since it sits after the ScopingHttpClient. It's below all the other decorators, so your options, your retry, your scope apply normally. And it produces a single file for all the clients used by the test.</p>
+        <p>And when a test has no attribute, the recorder is in passthrough mode: it lets everything through, it does nothing.</p>
     </aside>
 </section>

@@ -15,6 +15,10 @@ $client = new MockHttpClient(new HarFileResponseFactory(__DIR__.'/fixtures/api.h
         The recorder <b>builds on what is already there</b>: one HAR format, to record and to replay.
     </p>
     <aside class="notes">
-        The recorder writes files that HarFileResponseFactory can read: one format, one reader. Its API does not change. A file written by the recorder contains redacted values: replay it with RecorderHttpClient in replay mode rather than with the factory. The only change for existing users: repeated entries are replayed in order.
+        <p>Symfony already knew how to replay a HAR file, with HarFileResponseFactory.</p>
+        <p>[click] So replay already existed.</p>
+        <p>[click] But the file, you had to produce it yourself, and clean it up by hand.</p>
+        <p>[click] The recording half was missing.</p>
+        <p>[click] The recorder brings that missing half, in the same format: one format, one reader. One detail: a file written by the recorder contains redacted values, so replay it with RecorderHttpClient rather than with the factory.</p>
     </aside>
 </section>

@@ -19,4 +19,11 @@
         + URL fragments and the <code>Location</code> header, handled as URLs.
         On the request <b>and</b> on the response, <b>before</b> anything is written.
     </p>
+    <aside class="notes">
+        <p>Hence the choice: we redact by default, with no configuration.</p>
+        <p>[click] Authentication headers: Authorization, Cookie, X-Api-Key…</p>
+        <p>[click] The names from the official OAuth, OpenID Connect and SAML registries: access_token, client_secret…</p>
+        <p>[click] And common names: password, secret, token. A small nuance: code and key are only redacted in query strings and forms, not in JSON, where they're rarely secrets.</p>
+        <p>[click] URL fragments and the Location header are handled as URLs too. And all of this on the request and on the response, before anything is written. The secret never touches the file.</p>
+    </aside>
 </section>

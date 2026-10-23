@@ -8,4 +8,10 @@
         <li class="fragment">Solution: <code>redact_except</code>, or your own <code>RedactorInterface</code></li>
         <li class="fragment">And in that case: review the file before committing it</li>
     </ul>
+    <aside class="notes">
+        <p>Second pitfall, which follows directly from redaction: what is redacted is replayed redacted. If your file contains "access_token":"[REDACTED]", that's exactly what your code will receive on replay.</p>
+        <p>[click] So a test that verifies the signature of a replayed id_token will fail. [REDACTED] is not a valid JWT.</p>
+        <p>[click] The solution: redact_except for that field, or your own RedactorInterface.</p>
+        <p>[click] But in that case, you're turning off a protection. So review the file before committing it, and make sure what you let through really is a test token.</p>
+    </aside>
 </section>

@@ -32,6 +32,9 @@ grant_type=client_credentials
     </div>
     <p class="fragment callout danger" style="font-size: 0.55em;">Without redaction, all of this would end up in a file the workflow asks you to <b>commit</b>.</p>
     <aside class="notes">
-        Only the sensitive values are replaced. Everything else stays usable in the test: token_type, expires_in, the client_id.
+        <p>A concrete example. On the left, the real exchange: a POST to /oauth/token, with an Authorization header in Basic, and a client_secret in the form. And in the response, an access_token.</p>
+        <p>[click] On the right, what's written to the file. The Authorization header: redacted. The client_secret: redacted. The access_token: redacted.</p>
+        <p>But look at what remains: the grant_type, the client_id, the token_type, the expires_in. Only the sensitive values are replaced. Everything else stays usable in your test.</p>
+        <p>[click] And without this redaction, everything on the left would end up in a file the workflow explicitly asks you to commit.</p>
     </aside>
 </section>

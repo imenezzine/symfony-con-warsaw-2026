@@ -10,6 +10,11 @@
         One attribute, one command, and your tests no longer depend on the network.
     </p>
     <aside class="notes">
-        Since Symfony 8.2, testing code that depends on third-party APIs comes down to one attribute and one command: add UseRecord to the test, run it once with SYMFONY_HTTP_RECORDER=missing, and from then on the tests are fast, deterministic, and every API change becomes a readable diff.
+        <p>If you only remember four words:</p>
+        <p>[click] Record. With RecorderHttpClient, real exchanges, in the standard HAR format.</p>
+        <p>[click] Redact. With the DefaultRedactor, secrets, by default, before anything is written.</p>
+        <p>[click] Match. Method, URL, body: the right response, in the right order.</p>
+        <p>[click] Replay. With MockHttpClient, without the network, with a simple #[UseRecord].</p>
+        <p>[click] Since Symfony 8.2, testing code that depends on third-party APIs is no longer a headache. You keep the realism of real calls, and the speed and stability of mocks.</p>
     </aside>
 </section>

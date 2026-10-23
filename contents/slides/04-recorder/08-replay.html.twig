@@ -60,6 +60,9 @@
         With <code>SYMFONY_HTTP_RECORDER=missing</code>, a missing entry triggers the real call, which gets recorded.
     </p>
     <aside class="notes">
-        In replay mode, the request of the test is redacted the same way as when it was recorded, then compared with the entries of the file. Found: MockHttpClient serves the response. Missing: HarEntryNotFoundException, and above all no network call, unless you asked for it explicitly at launch with SYMFONY_HTTP_RECORDER=missing.
+        <p>And now in replay mode. Your test makes the same request. It reaches RecorderHttpClient… which passes it through the DefaultRedactor, exactly as when recording. Then it compares it with the entries of the file: method, URL, body.</p>
+        <p>[click] If an entry matches, the response is replayed by MockHttpClient. No network call.</p>
+        <p>[click] If no entry matches, we throw an exception, HarEntryNotFoundException, and the test fails. Above all, we don't go out to the network.</p>
+        <p>[click] The only way to trigger a real call for a missing entry is to have asked for it explicitly at launch, with SYMFONY_HTTP_RECORDER=missing. In that case, the real call is made, and it's appended to the file.</p>
     </aside>
 </section>

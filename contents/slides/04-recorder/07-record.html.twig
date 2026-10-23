@@ -56,6 +56,9 @@
         </g>
     </svg>
     <aside class="notes">
-        In record mode, the test receives the real, unredacted response: the behaviour of the code under test does not change. Meanwhile, chunk after chunk, the recorder keeps a copy of the body; on the last chunk, it passes it through the redactor and writes it to the file. Nothing is read eagerly: stream() and concurrent requests keep working.
+        <p>Let's see what happens inside, in record mode. Your test makes a request. It goes through RecorderHttpClient… and out to the third-party API: it's a real HTTP call.</p>
+        <p>[click] The response comes back to the test, and it comes back untouched. Not redacted, not modified. The behaviour of the code under test doesn't change at all while recording.</p>
+        <p>[click] Meanwhile, chunk after chunk, the recorder keeps a copy of the body. On the last chunk, that copy goes through the DefaultRedactor, which redacts the secrets… then through HarFile, which writes it under flock() to avoid concurrent writes… and the entry lands in the test's file.</p>
+        <p>A detail that matters: the recorder never forces the response to be read. It observes the stream. So stream() and concurrent requests keep working exactly as they do without it.</p>
     </aside>
 </section>

@@ -17,4 +17,10 @@ $client = new MockHttpClient([
 $service = new PaymentService($client);
     </code></pre>
     <p class="fragment subtitle">Tedious to write, and nothing guarantees it still looks like the API.</p>
+    <aside class="notes">
+        <p>Let's look at what a handwritten mock looks like, with what Symfony already gives us: <code>MockHttpClient</code> and <code>MockResponse</code>.</p>
+        <p>[click] We build a JSON response by hand: an id, a status, an amount, a currency…</p>
+        <p>[click] And then, the comment that hurts: "and the 40 other fields of the real response?" Because a real payment API response isn't four fields. It's forty, with nested objects, metadata, and dates in a very particular format. And we never copy all of it. We copy what we think we need today.</p>
+        <p>[click] The result: it's tedious to write, and nothing guarantees it still looks like the API.</p>
+    </aside>
 </section>

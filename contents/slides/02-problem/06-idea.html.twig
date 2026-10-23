@@ -19,6 +19,11 @@
         Since Symfony 8.2, it is <b>built into HttpClient</b>, with no external dependency.
     </p>
     <aside class="notes">
-        This is "record and replay", made popular by VCR in Ruby and php-vcr in PHP. We keep the fidelity of the real API, with the speed and stability of a mock. What is new: it is now built into the HttpClient component (RecorderHttpClient) and driven from the tests by the PHPUnit Bridge, with no external dependency.
+        <p>So what if we took the best of both worlds? What if we recorded reality?</p>
+        <p>[click] Step one: record. The test makes the real calls only once, and saves every request / response pair to a file.</p>
+        <p>[click] Step two: commit. That file lives with the test. It's reviewed in the pull request, like code. If the API changes, you see it in the diff.</p>
+        <p>[click] Step three: replay. Every following run replays the recorded responses, without the network. Fast, stable, no secrets at all. And realistic, because these are real responses.</p>
+        <p>[click] Let me be honest: the idea isn't new. It's record and replay, made popular by VCR in Ruby, and php-vcr has been doing it in PHP for years. That's where the cassette comes from, by the way.</p>
+        <p>What's new is that since Symfony 8.2, it's built into the HttpClient component. No external dependency, no hook on the curl functions, and driven directly from your tests by the PHPUnit Bridge.</p>
     </aside>
 </section>

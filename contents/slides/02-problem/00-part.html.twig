@@ -11,6 +11,10 @@
         </div>
     </div>
     <aside class="notes">
-        A red CI because a third-party API is not answering… and we act as if everything were fine.
+        <p>Friday afternoon. You open a small pull request, and the CI turns red.</p>
+        <p>The failing test has nothing to do with your change. A third-party API just didn't answer: a timeout, a 503, a rate limit.</p>
+        <p>So we click "re-run", it turns green, we merge. Just like this little dog: "This is fine."</p>
+        <p>But it's not. A test that fails for reasons outside our code is a test we stop listening to. And the day it fails for a real reason, nobody will look.</p>
+        <p>So today's question: how do we test code that talks to the outside world, without depending on it being available?</p>
     </aside>
 </section>

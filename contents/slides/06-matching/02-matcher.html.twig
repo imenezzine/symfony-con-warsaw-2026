@@ -11,6 +11,12 @@
     </p>
     <p class="fragment subtitle" style="font-size: 0.6em;">Secrets redacted on both sides, and the random boundary of a multipart body replaced with a fixed value.</p>
     <aside class="notes">
-        There is no MatcherInterface any more: the final rework removed it. To ignore a field that changes on every request, add it to redact. A matcher may come back later if the need shows up.
+        <p>A request is recognised by three criteria.</p>
+        <p>[click] The method: GET, POST, and so on.</p>
+        <p>[click] The URL, absolute, query string included.</p>
+        <p>[click] And the body, when it's a string. A streamed body isn't compared.</p>
+        <p>[click] But before comparing, requests are normalised, exactly the way HttpClient does it. The json, query, base_uri, auth_basic and auth_bearer options end up in the recorded URL, body and headers. So whether you passed your parameters through the query option or directly in the URL, it's the same request.</p>
+        <p>[click] Secrets are redacted on both sides. And the boundary of a multipart body, which is random, is replaced with a fixed value. Otherwise, no file upload would ever match.</p>
+        <p>By the way: there was a MatcherInterface in the first versions. It was removed in the final rework. To ignore an unstable field, you go through redact. A customisable matcher may come back later, if a real need shows up.</p>
     </aside>
 </section>

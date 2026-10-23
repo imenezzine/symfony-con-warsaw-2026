@@ -1,9 +1,8 @@
 <section>
     <h3>Adapt it to your API</h3>
-    <pre><code class="language-yaml" data-trim data-line-numbers="1-9|4-5|6-7|8-9">
+    <pre><code class="language-yaml" data-trim data-line-numbers="1-8|3-4|5-6|7-8">
 http_client:
     recorder:
-        enabled: true
         # headers, query string, forms and JSON: added to the built-in lists
         redact: ['X-Custom-Secret', 'sig', 'pin']
         # never redacted, removed from the built-in lists
@@ -18,4 +17,12 @@ http_client:
         A field that changes on every request (timestamp, nonce, request id)? Add it to <code>redact</code>:
         redacted on both sides, it is also <b>ignored when matching</b>.
     </p>
+    <aside class="notes">
+        <p>Of course, your API may have its own secrets. So it's configurable.</p>
+        <p>[click] With redact, you add names to the built-in lists. Here, an X-Custom-Secret header, a sig parameter, a pin field. It applies to headers, query strings, forms and JSON.</p>
+        <p>[click] With redact_except, you remove names from the built-in lists.</p>
+        <p>[click] And if you want full control over redaction, you provide your own service implementing RedactorInterface.</p>
+        <p>[click] redact_except is for when code, for example, isn't a secret in your tests but a value you need.</p>
+        <p>[click] And a tip that follows directly from how it works: a field that changes on every request? A timestamp, a nonce, a request id? Add it to redact. Since it's redacted on both sides, when recording and when replaying, it's also ignored when comparing requests. We'll come back to that in two minutes.</p>
+    </aside>
 </section>

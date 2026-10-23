@@ -23,6 +23,11 @@
     </code></pre>
     <p class="subtitle" style="font-size: 0.5em;">Simplified excerpt of a file written by the recorder. A binary body is stored as base64.</p>
     <aside class="notes">
-        You have probably seen "Save all as HAR" in the Network tab of your browser: that is this format. When the API changes, the diff of the HAR file shows up in the pull request. Notice the [REDACTED] on client_secret and access_token already: we will come back to it, it is one of the key points.
+        <p>HAR, for HTTP Archive. It's a JSON format for archiving HTTP exchanges. It's readable, it's reviewed in a pull request like code, and you've probably met it already without knowing: in the Network tab of your browser, the "Save all as HAR" button is exactly this format. So a file recorded by your tests can be opened in your devtools.</p>
+        <p>Let's look at an excerpt.</p>
+        <p>[click] We have the request: the method, POST, and the URL, here an OAuth endpoint.</p>
+        <p>[click] And the request body, in postData. Look closely at the client_secret: it's [REDACTED]. Keep that in mind, we'll come back to it, it's one of the key points of this talk.</p>
+        <p>[click] Then the response: the status, 200…</p>
+        <p>[click] … and its content. Here again, the access_token is redacted, but expires_in is intact.</p>
     </aside>
 </section>

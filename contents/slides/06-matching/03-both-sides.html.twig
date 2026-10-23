@@ -41,6 +41,8 @@
         A short secret in a query string could still be <b>guessed offline</b> from a committed file.
     </p>
     <aside class="notes">
-        Storing a hash of the real request as the matching key would be an alternative; it was ruled out for this security reason.
+        <p>Remember the redactor in replay mode? This is why. And it's the most elegant idea of the pull request. At the top, the request of the test, with its real secret. The redactor redacts it. At the bottom, the entry of the file, redacted when it was recorded. We compare: the two are identical.</p>
+        <p>[click] Redaction is deterministic: you don't need to know the secret to replay.</p>
+        <p>[click] We could have stored a hash of the real request. Ruled out: a short secret, like a four-digit PIN, can be guessed offline by trying the ten thousand possibilities. Redaction leaves nothing to guess.</p>
     </aside>
 </section>
