@@ -1,12 +1,11 @@
 <section>
     <h3>Same request, different responses</h3>
-    <pre><code class="language-php" data-trim data-line-numbers="1-7|2-3|5-6">
+    <pre><code class="language-php" data-trim data-line-numbers="1-5|2-3|5">
 // Recorded: an asynchronous export polled until it is ready
 $client->request('GET', 'https://api.example.com/exports/42')->toArray(); // 202
 $client->request('GET', 'https://api.example.com/exports/42')->toArray(); // 200
 
 // On replay: 202, then 200, then 200 (the last response is served again)
-// With SYMFONY_HTTP_RECORDER=missing: a recorded entry counts as already served
     </code></pre>
     <ul style="font-size: 0.65em;">
         <li class="fragment">Entries are <b>appended</b> in order, never overwritten, and replayed <b>in order</b></li>
@@ -14,12 +13,12 @@ $client->request('GET', 'https://api.example.com/exports/42')->toArray(); // 200
         <li class="fragment"><code>RetryableHttpClient</code> cancels the failed attempt: a 500 then a 200 only records the 200</li>
     </ul>
     <aside class="notes">
-        <p>Last matching topic, and the one that gave us the most trouble.</p>
-        <p>[click] A very common case: an asynchronous export. You ask for export 42, and the API answers 202, "not ready yet". You ask again, exactly the same request, and this time it's 200, it's ready. Same request, two different responses.</p>
-        <p>[click] On replay, we serve 202, then 200. And if the code keeps polling, we serve the last response again, 200.</p>
-        <p>[click] For that to work: entries are appended to the file in order, never overwritten, and replayed in order.</p>
-        <p>[click] Second point: the replay cursor, which knows where we are, belongs to the test, not to the client. Why? Because in a WebTestCase, KernelBrowser reboots the kernel between two requests. New container, so new client. If the cursor lived in the client, we'd replay 202, then 202, then 202… forever.</p>
-        <p>[click] And third point: RetryableHttpClient cancels the failed attempt. If the API answers 500, then 200 on the retry, only the 200 is recorded.</p>
-        <p>Each of these points comes from a real bug found during the review. At first, a new entry overwrote the old one: impossible to record a polling loop. Then the cursor lived in the client: the kernel reboot problem. And the last one, found in review: in missing mode, the entry we had just recorded was served again to the next request, and the polling never ended. Hence the rule: in missing mode, an entry we've just recorded counts as already served.</p>
+        <p>Last matching topic. The hardest one.</p>
+        <p>[click] An export. The API says 202: not ready. Same request again: 200, ready. Same request, two responses.</p>
+        <p>[click] On replay: 202, then 200. If the code asks again: 200 again.</p>
+        <p>[click] So entries are added in order, never replaced, and replayed in order.</p>
+        <p>[click] The position in the file belongs to the test, not to the client. Why? KernelBrowser restarts the kernel between two requests, and creates a new client. If not, we would replay 202 forever.</p>
+        <p>[click] And with RetryableHttpClient: a 500, then a 200? Only the 200 is recorded.</p>
+        <p>Each point here was a real bug, found during the review.</p>
     </aside>
 </section>

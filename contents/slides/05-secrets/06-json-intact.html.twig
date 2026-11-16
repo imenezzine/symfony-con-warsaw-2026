@@ -20,10 +20,9 @@
         the rest is <b>byte-for-byte identical</b> (<code>{}</code>, floats, big integers, escapes, formatting).
     </p>
     <aside class="notes">
-        <p>A subtler point. Here's a small JSON: an empty meta object, a password, a float 1.0, and a very big integer.</p>
-        <p>[click] The naive approach to redact the password is json_decode, replace the value, then json_encode. And look at the result: the empty object became an empty array. The 1.0 became 1. And the big integer became a float in scientific notation.</p>
-        <p>[click] The chosen solution: an in-place replacement. Only the value of the password changes.</p>
-        <p>[click] The JSON is no longer decoded then re-encoded: sensitive values are replaced in a single pass, and everything else is byte-for-byte identical. Empty objects, floats, big integers, escapes, and even the formatting.</p>
-        <p>Why does it matter so much? Imagine an assertSame on the response body. In record mode, the test gets the real response: it passes. In replay mode, it gets the re-encoded version: it fails. A test that passes when recording and fails when replaying is the kind of bug that costs you an afternoon.</p>
+        <p>A small detail, but important. A small JSON: an empty object, a password, a float 1.0, and a big integer.</p>
+        <p>[click] The easy way: json_decode, change the password, json_encode. Look: the object became an array. 1.0 became 1. The big integer became a float.</p>
+        <p>[click] Our way: we replace only the password value, in place.</p>
+        <p>[click] Everything else stays exactly the same. Why? With assertSame on the body, the test would pass when recording, and fail when replaying. That kind of bug costs you an afternoon.</p>
     </aside>
 </section>

@@ -14,8 +14,8 @@ $response->toArray(false);
     </p>
     <aside class="notes">
         <p>First pitfall: error responses.</p>
-        <p>[click] If you call getContent() on a 404 response, HttpClient throws a ClientException. And that exception consumes the response: it isn't recorded.</p>
-        <p>[click] If you want to record an error response, pass false: getContent(false) or toArray(false). The response is then recorded with its status and its body.</p>
-        <p>[click] The general rule: only fully received responses are written. A response destroyed without being read, cancelled, or consumed by the exception isn't recorded. That's on purpose: on replay, the test fails clearly, instead of silently receiving an empty body.</p>
+        <p>[click] getContent() on a 404 throws a ClientException. The exception reads the response, so it is not recorded.</p>
+        <p>[click] To record an error, pass false: getContent(false) or toArray(false). Now the status and the body are recorded.</p>
+        <p>[click] The rule: only complete responses are written. On replay, the test fails clearly. It does not get an empty body.</p>
     </aside>
 </section>

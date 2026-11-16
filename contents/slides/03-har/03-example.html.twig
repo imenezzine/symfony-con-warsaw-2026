@@ -23,11 +23,11 @@
     </code></pre>
     <p class="subtitle" style="font-size: 0.5em;">Simplified excerpt of a file written by the recorder. A binary body is stored as base64.</p>
     <aside class="notes">
-        <p>HAR, for HTTP Archive. It's a JSON format for archiving HTTP exchanges. It's readable, it's reviewed in a pull request like code, and you've probably met it already without knowing: in the Network tab of your browser, the "Save all as HAR" button is exactly this format. So a file recorded by your tests can be opened in your devtools.</p>
-        <p>Let's look at an excerpt.</p>
-        <p>[click] We have the request: the method, POST, and the URL, here an OAuth endpoint.</p>
-        <p>[click] And the request body, in postData. Look closely at the client_secret: it's [REDACTED]. Keep that in mind, we'll come back to it, it's one of the key points of this talk.</p>
+        <p>HAR means HTTP Archive. It's a JSON format to save HTTP exchanges.</p>
+        <p>You already know it: in your browser, the Network tab has a button "Save all as HAR". So you can open a recorded file in your devtools.</p>
+        <p>[click] Here is the request: the method, POST, and the URL.</p>
+        <p>[click] And the request body. Look at client_secret: it's [REDACTED]. Remember this, we'll come back to it.</p>
         <p>[click] Then the response: the status, 200…</p>
-        <p>[click] … and its content. Here again, the access_token is redacted, but expires_in is intact.</p>
+        <p>[click] … and the content. The access_token is redacted too. But expires_in is still there.</p>
     </aside>
 </section>

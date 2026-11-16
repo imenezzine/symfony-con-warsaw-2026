@@ -18,6 +18,10 @@
         </div>
     </div>
     <aside class="notes">
-        Three pieces. In the HttpClient component, RecorderHttpClient: a decorator that, for each request, replays a recorded response, records the real one, or lets it through. In the PHPUnit Bridge, the UseRecord attribute, which names the file a test uses. And an environment variable, SYMFONY_HTTP_RECORDER, which decides when you launch the tests whether you replay or record. We will look at each of them.
+        <p>There are three building blocks.</p>
+        <p>[click] One: in the HttpClient component, RecorderHttpClient. It wraps the HTTP client. For each request, it replays, records, or lets it pass.</p>
+        <p>[click] Two: in the PHPUnit Bridge, the UseRecord attribute. It says which file a test uses.</p>
+        <p>[click] Three: an environment variable, SYMFONY_HTTP_RECORDER. When you run the tests, it decides: replay or record.</p>
+        <p>Let's see each one.</p>
     </aside>
 </section>

@@ -16,9 +16,9 @@
         <li class="fragment">Next runs and CI: <code>SYMFONY_HTTP_RECORDER=replay</code> (the default when it is not set), replay, zero network</li>
     </ol>
     <aside class="notes">
-        <p>Step three: record once. We run the test with an environment variable, SYMFONY_HTTP_RECORDER=missing, and a --filter to run only this test.</p>
-        <p>[click] The test makes the real calls, and the file is written: GetRandomControllerTest/testRandom.har, next to the test.</p>
-        <p>[click] We review this file, check that it contains nothing we don't want to publish, and we commit it.</p>
-        <p>[click] And from then on, every following run, locally and in CI, is in replay mode. It's the default: if the variable isn't set, we replay. Zero network.</p>
+        <p>Step three: record once. Run the test with SYMFONY_HTTP_RECORDER=missing, and --filter to run only this test.</p>
+        <p>[click] The test makes the real calls. The file is written.</p>
+        <p>[click] Review the file. Check there is nothing private in it. Commit it.</p>
+        <p>[click] After that, every run, on your machine or in the CI, is in replay mode. That's the default. Zero network.</p>
     </aside>
 </section>

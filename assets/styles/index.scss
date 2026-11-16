@@ -83,6 +83,7 @@ figcaption {
 }
 
 .reveal pre {
+    box-sizing: border-box;
     width: 100%;
     font-size: 0.42em;
     border: 2px solid $ink;

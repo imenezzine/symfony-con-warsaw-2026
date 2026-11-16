@@ -42,12 +42,12 @@
         </tbody>
     </table>
     <aside class="notes">
-        <p>Let's do a quick comparison of the two ways we usually test this.</p>
-        <p>Realism: real calls give us real responses. With mocks, we end up testing our imagination rather than the API.</p>
-        <p>Speed: real calls go over the network, so they're slow. Mocks are instant.</p>
-        <p>Stability: real calls depend on the provider, its quotas and its outages, so they're flaky. Mocks are stable.</p>
-        <p>Cost: paying APIs bill every call, so every test run has a price. Mocks are free.</p>
-        <p>Secrets: real calls need API keys in CI. Mocks need none.</p>
-        <p>Maintenance: real calls need nothing, as long as the API answers. Mocks are tedious to write, and they drift: the day the API changes, the test stays green and production breaks.</p>
+        <p>Today, we usually have two options: real HTTP calls, or handwritten mocks. Let's compare.</p>
+        <p>[click] Realism. Real calls give real responses. Mocks give what we imagine the API returns.</p>
+        <p>[click] Speed. Real calls are slow: they use the network. Mocks are instant.</p>
+        <p>[click] Stability. Real calls depend on the provider: quotas, outages. Mocks are stable.</p>
+        <p>[click] Cost. Paying APIs bill every call, so every test run costs money. Mocks are free.</p>
+        <p>[click] Secrets. Real calls need API keys in the CI. Mocks need nothing.</p>
+        <p>[click] Maintenance. Real calls: nothing to do, as long as the API answers. Mocks: a lot of work. And they drift away from the real API.</p>
     </aside>
 </section>

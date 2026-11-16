@@ -7,33 +7,42 @@
             </marker>
         </defs>
 
-        <!-- Live request -->
+        <!-- Start: the live request alone -->
         <rect x="10" y="30" width="250" height="84" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
         <text x="135" y="64" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Request of the test</text>
         <text x="135" y="92" text-anchor="middle" fill="#C92A2A" font-size="15" font-family="monospace">/x?token=secret</text>
 
-        <rect x="300" y="30" width="150" height="84" rx="10" fill="#FFF4E6" stroke="#E67700" stroke-width="1.5"/>
-        <text x="375" y="78" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Redactor</text>
+        <!-- 1. the redactor -->
+        <g class="fragment">
+            <line class="flow" x1="260" y1="72" x2="296" y2="72" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-m)"/>
+            <rect x="300" y="30" width="150" height="84" rx="10" fill="#FFF4E6" stroke="#E67700" stroke-width="1.5"/>
+            <text x="375" y="78" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Redactor</text>
+        </g>
 
-        <rect x="490" y="30" width="250" height="84" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
-        <text x="615" y="64" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Redacted request</text>
-        <text x="615" y="92" text-anchor="middle" fill="#1F1A17" font-size="15" font-family="monospace">/x?token=%5BREDACTED%5D</text>
+        <!-- 2. the redacted request -->
+        <g class="fragment">
+            <line class="flow" x1="450" y1="72" x2="486" y2="72" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-m)"/>
+            <rect x="490" y="30" width="250" height="84" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+            <text x="615" y="64" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Redacted request</text>
+            <text x="615" y="92" text-anchor="middle" fill="#1F1A17" font-size="15" font-family="monospace">/x?token=%5BREDACTED%5D</text>
+        </g>
 
-        <line class="flow" x1="260" y1="72" x2="296" y2="72" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-m)"/>
-        <line class="flow" x1="450" y1="72" x2="486" y2="72" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-m)"/>
+        <!-- 3. the recorded entry -->
+        <g class="fragment">
+            <rect x="490" y="190" width="250" height="84" rx="10" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <text x="615" y="224" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Entry of the .har file</text>
+            <text x="615" y="252" text-anchor="middle" fill="#1F1A17" font-size="15" font-family="monospace">/x?token=%5BREDACTED%5D</text>
+            <text x="470" y="238" text-anchor="end" fill="#7A6F66" font-size="15">redacted when recorded</text>
+        </g>
 
-        <!-- Recorded entry -->
-        <rect x="490" y="190" width="250" height="84" rx="10" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5" stroke-dasharray="6 4"/>
-        <text x="615" y="224" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Entry of the .har file</text>
-        <text x="615" y="252" text-anchor="middle" fill="#1F1A17" font-size="15" font-family="monospace">/x?token=%5BREDACTED%5D</text>
-        <text x="470" y="238" text-anchor="end" fill="#7A6F66" font-size="15">redacted when recorded</text>
-
-        <!-- Comparison -->
-        <path class="flow" d="M740,72 H865 V108" fill="none" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-m)"/>
-        <path class="flow" d="M740,232 H865 V196" fill="none" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-m)"/>
-        <rect x="790" y="112" width="150" height="80" rx="10" fill="#E3F6F8" stroke="#0C8599" stroke-width="1.5"/>
-        <text x="865" y="146" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Comparison</text>
-        <text x="865" y="172" text-anchor="middle" fill="#2B8A3E" font-size="15" font-weight="bold">identical</text>
+        <!-- 4. the comparison -->
+        <g class="fragment">
+            <path class="flow" d="M740,72 H865 V108" fill="none" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-m)"/>
+            <path class="flow" d="M740,232 H865 V196" fill="none" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-m)"/>
+            <rect x="790" y="112" width="150" height="80" rx="10" fill="#E3F6F8" stroke="#0C8599" stroke-width="1.5"/>
+            <text x="865" y="146" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Comparison</text>
+            <text x="865" y="172" text-anchor="middle" fill="#2B8A3E" font-size="15" font-weight="bold">identical</text>
+        </g>
     </svg>
     <p class="fragment" style="font-size: 0.6em;">Redaction is <b>deterministic</b>: the real request, with its real secrets, still matches.</p>
     <p class="fragment callout warn">
@@ -41,8 +50,12 @@
         A short secret in a query string could still be <b>guessed offline</b> from a committed file.
     </p>
     <aside class="notes">
-        <p>Remember the redactor in replay mode? This is why. And it's the most elegant idea of the pull request. At the top, the request of the test, with its real secret. The redactor redacts it. At the bottom, the entry of the file, redacted when it was recorded. We compare: the two are identical.</p>
-        <p>[click] Redaction is deterministic: you don't need to know the secret to replay.</p>
-        <p>[click] We could have stored a hash of the real request. Ruled out: a short secret, like a four-digit PIN, can be guessed offline by trying the ten thousand possibilities. Redaction leaves nothing to guess.</p>
+        <p>This is my favourite idea in the pull request. We are in replay. The test sends its request, with the real secret.</p>
+        <p>[click] It goes through the redactor.</p>
+        <p>[click] The secret is hidden: token is now [REDACTED].</p>
+        <p>[click] On the other side, the entry in the file. It was redacted the same way, when it was recorded.</p>
+        <p>[click] We compare the two: they are the same.</p>
+        <p>[click] Redaction always gives the same result. So you don't need the secret to replay.</p>
+        <p>[click] Why not store a hash of the real request? Because a short secret, like a 4-digit PIN, can be guessed: only ten thousand tries. Redaction leaves nothing to guess.</p>
     </aside>
 </section>

@@ -32,11 +32,11 @@
         </tbody>
     </table>
     <aside class="notes">
-        <p>Concretely, here's what the review changed.</p>
-        <p>[click] Secrets. In the first version, the Authorization header, cookies and tokens were written as is. Today, they're redacted by default, on the request and on the response.</p>
-        <p>[click] The missing entry. Before: a real network call by default, silently. Today: an exception, and never the network.</p>
-        <p>[click] stream(). In the first version, it was broken, and getContent() serialised the requests: no more concurrency. Today, the recorder relies on AsyncResponse and records chunk after chunk.</p>
-        <p>[click] And the options. A timeout: 5 became 60 seconds when recording, because the default options of the decorated client were lost. Today, the original options are passed through as is.</p>
-        <p>The lesson: a decorator must be transparent. It must respect stream(), concurrency, withOptions(), the default options. And each of these rows is a bug found by a reviewer who actually ran the code. Not just read the diff: ran it.</p>
+        <p>So, what did the review change?</p>
+        <p>[click] Secrets. Before: written as they are. Today: redacted by default.</p>
+        <p>[click] A missing request. Before: a real call, silently. Today: an exception, never the network.</p>
+        <p>[click] stream(). Before: broken, and no more parallel requests. Today: recorded chunk by chunk.</p>
+        <p>[click] Options. Before: a timeout of 5 seconds became 60 when recording. Today: options pass as they are.</p>
+        <p>The lesson: a decorator must be invisible. And every line here is a bug found by a reviewer who ran the code. Not just read it: ran it.</p>
     </aside>
 </section>

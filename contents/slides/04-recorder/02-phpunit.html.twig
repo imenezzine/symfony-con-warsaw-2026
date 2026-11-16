@@ -15,8 +15,8 @@
         With it, the tree follows the namespace: <code>tests/records/App/Tests/FooTest/testBar.har</code>
     </p>
     <aside class="notes">
-        <p>Step one: in your phpunit.dist.xml, you register the extension of the PHPUnit Bridge.</p>
-        <p>[click] It's the SymfonyExtension. It links your tests to the recorder: it knows which test is running, and therefore which file to use. Many projects already have it for ClockMock or DnsMock.</p>
-        <p>[click] And there's an optional parameter, http-recorder-directory. Without it, each .har file lives next to its test. With it, all the recordings go into a single directory, and the tree follows the namespace: tests/records/App/Tests/FooTest/testBar.har.</p>
+        <p>Step one: in phpunit.dist.xml, add the extension of the PHPUnit Bridge.</p>
+        <p>[click] It's SymfonyExtension. It knows which test is running, so it knows which file to use. Maybe you already have it for ClockMock or DnsMock.</p>
+        <p>[click] One optional parameter: http-recorder-directory. Without it, each file lives next to its test. With it, all files go in one folder, organised by namespace.</p>
     </aside>
 </section>

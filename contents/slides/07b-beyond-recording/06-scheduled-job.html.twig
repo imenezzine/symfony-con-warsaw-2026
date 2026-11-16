@@ -14,6 +14,10 @@ SYMFONY_HTTP_RECORDER=passthrough vendor/bin/phpunit --group third-party
         This check stays a <b>manual</b> step: it does not get automated.
     </p>
     <aside class="notes">
-        No new tool: the tests that replay on every commit can run against the real services by switching one environment variable. Tag them with a group so you only run the tests that talk to third parties. But do it by hand, regularly, from a developer machine with sandbox keys. Do not put it in CI, even on a schedule: you would bring back the API keys in CI, the cost of paying APIs, the failures you do not control, and with a payment provider, real payments. The CI keeps replaying, without secrets and without the network.
+        <p>How? No new tool. The same tests, with one variable: passthrough. On your machine, with sandbox keys, every few weeks. Use a group to run only the tests that call third parties.</p>
+        <p>[click] passthrough: real calls, files not read and not written.</p>
+        <p>[click] Red means the provider changed. You know it before production does.</p>
+        <p>[click] Not in the CI. That brings back everything we removed:</p>
+        <p>[click] secrets in the CI, a bill on every run, failures you don't control, and real payments. This check stays manual.</p>
     </aside>
 </section>

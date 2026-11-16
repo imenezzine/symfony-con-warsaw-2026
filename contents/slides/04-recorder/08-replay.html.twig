@@ -13,29 +13,35 @@
             </marker>
         </defs>
 
-        <!-- File -->
-        <rect x="770" y="16" width="170" height="64" rx="10" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5" stroke-dasharray="6 4"/>
-        <text x="855" y="54" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">testX.har</text>
-        <line class="flow" x1="855" y1="80" x2="855" y2="126" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-rep)"/>
-
-        <!-- Request -->
+        <!-- Start: the test alone -->
         <rect x="20" y="130" width="170" height="84" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
         <text x="105" y="178" text-anchor="middle" fill="#1F1A17" font-size="18" font-weight="bold">Your test</text>
 
-        <rect x="230" y="130" width="200" height="84" rx="10" fill="#FFE8D6" stroke="#E8590C" stroke-width="2.5"/>
-        <text x="330" y="178" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">RecorderHttpClient</text>
+        <!-- 1. the recorder -->
+        <g class="fragment">
+            <line class="flow" x1="190" y1="172" x2="226" y2="172" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-rep)"/>
+            <rect x="230" y="130" width="200" height="84" rx="10" fill="#FFE8D6" stroke="#E8590C" stroke-width="2.5"/>
+            <text x="330" y="178" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">RecorderHttpClient</text>
+        </g>
 
-        <rect x="475" y="130" width="200" height="84" rx="10" fill="#FFF4E6" stroke="#E67700" stroke-width="1.5"/>
-        <text x="575" y="164" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">DefaultRedactor</text>
-        <text x="575" y="190" text-anchor="middle" fill="#7A6F66" font-size="14">redacts the request</text>
+        <!-- 2. the redactor -->
+        <g class="fragment">
+            <line class="flow" x1="430" y1="172" x2="471" y2="172" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-rep)"/>
+            <rect x="475" y="130" width="200" height="84" rx="10" fill="#FFF4E6" stroke="#E67700" stroke-width="1.5"/>
+            <text x="575" y="164" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">DefaultRedactor</text>
+            <text x="575" y="190" text-anchor="middle" fill="#7A6F66" font-size="14">redacts the request</text>
+        </g>
 
-        <rect x="720" y="130" width="220" height="84" rx="10" fill="#E3F6F8" stroke="#0C8599" stroke-width="1.5"/>
-        <text x="830" y="164" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Comparison</text>
-        <text x="830" y="190" text-anchor="middle" fill="#7A6F66" font-size="14">method, URL, body</text>
-
-        <line class="flow" x1="190" y1="172" x2="226" y2="172" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-rep)"/>
-        <line class="flow" x1="430" y1="172" x2="471" y2="172" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-rep)"/>
-        <line class="flow" x1="675" y1="172" x2="716" y2="172" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-rep)"/>
+        <!-- 3. comparison with the file -->
+        <g class="fragment">
+            <line class="flow" x1="675" y1="172" x2="716" y2="172" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-rep)"/>
+            <rect x="720" y="130" width="220" height="84" rx="10" fill="#E3F6F8" stroke="#0C8599" stroke-width="1.5"/>
+            <text x="830" y="164" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">Comparison</text>
+            <text x="830" y="190" text-anchor="middle" fill="#7A6F66" font-size="14">method, URL, body</text>
+            <rect x="770" y="16" width="170" height="64" rx="10" fill="#FFFDF7" stroke="#1F1A17" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <text x="855" y="54" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">testX.har</text>
+            <line class="flow" x1="855" y1="80" x2="855" y2="126" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-rep)"/>
+        </g>
 
         <!-- Found -->
         <g class="fragment">
@@ -60,9 +66,12 @@
         With <code>SYMFONY_HTTP_RECORDER=missing</code>, a missing entry triggers the real call, which gets recorded.
     </p>
     <aside class="notes">
-        <p>And now in replay mode. Your test makes the same request. It reaches RecorderHttpClient… which passes it through the DefaultRedactor, exactly as when recording. Then it compares it with the entries of the file: method, URL, body.</p>
-        <p>[click] If an entry matches, the response is replayed by MockHttpClient. No network call.</p>
-        <p>[click] If no entry matches, we throw an exception, HarEntryNotFoundException, and the test fails. Above all, we don't go out to the network.</p>
-        <p>[click] The only way to trigger a real call for a missing entry is to have asked for it explicitly at launch, with SYMFONY_HTTP_RECORDER=missing. In that case, the real call is made, and it's appended to the file.</p>
+        <p>Replay mode. Again, we start with your test.</p>
+        <p>[click] The same request reaches RecorderHttpClient.</p>
+        <p>[click] It goes through the redactor, like when recording.</p>
+        <p>[click] Then we compare it with the entries of the file: method, URL, body.</p>
+        <p>[click] Found? MockHttpClient replays the response. No network.</p>
+        <p>[click] Not found? We throw HarEntryNotFoundException. The test fails. And we never go to the network.</p>
+        <p>[click] The only way to make a real call: ask for it, with SYMFONY_HTTP_RECORDER=missing. Then the call is made, and added to the file.</p>
     </aside>
 </section>

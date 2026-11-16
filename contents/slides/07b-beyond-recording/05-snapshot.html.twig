@@ -15,6 +15,9 @@
         So we check the contract <b>regularly, by hand, in dev</b>, never in CI.
     </p>
     <aside class="notes">
-        Let us be honest about the limit. The recording removes the imagination from the mock, but not the time. The fix is not to call the real API in CI, it is to check it regularly by hand, from a developer machine, where a red result means one thing: the provider changed.
+        <p>Second question: is the recording still true? Let's be honest.</p>
+        <p>[click] A replayed test proves this: your code works with the response the API sent on recording day. Real fields, real formats.</p>
+        <p>[click] It does not prove that the API still answers that way. If the provider renames a field tomorrow, the test stays green.</p>
+        <p>[click] Better than a handwritten mock, but the same blind spot. So we check the real API regularly, by hand. Never in the CI.</p>
     </aside>
 </section>

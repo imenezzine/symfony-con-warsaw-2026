@@ -19,11 +19,11 @@ class GetRandomControllerTest extends WebTestCase
     </code></pre>
     <p class="fragment subtitle" style="font-size: 0.6em;">The test uses <code>GetRandomControllerTest/testRandom.har</code>, stored next to it. Nothing else changes in the code.</p>
     <aside class="notes">
-        <p>Step two. Here's a completely ordinary functional test: a WebTestCase, we create a client, we call /random, a route whose controller calls an external API, and we check that the response is successful.</p>
-        <p>[click] The only thing we add is the #[UseRecord] attribute on the test method.</p>
-        <p>[click] And the rest of the test doesn't change. No mock to inject, no service to replace in the container.</p>
-        <p>[click] The test uses GetRandomControllerTest/testRandom.har, in a directory named after the class, next to the test.</p>
-        <p>You may have noticed that we configured nothing to enable the recorder. That's normal: it's enabled by default when framework.test is true, so in the test environment, and it doesn't even exist in production. If you don't want it, one line is enough: recorder: false under http_client. And enabling it everywhere is safe: without #[UseRecord] on a test, the recorder does nothing, it lets everything through.</p>
-        <p>The important point: the attribute only names the file. It doesn't decide whether we record. Recording is decided when you launch the tests, with the environment variable. That way, nothing that touches the network can be committed by mistake.</p>
+        <p>Step two. A normal functional test. We call /random, and the controller calls an external API.</p>
+        <p>[click] We add only one thing: the UseRecord attribute.</p>
+        <p>[click] The rest does not change. No mock to inject. No service to replace.</p>
+        <p>[click] The file name comes from the class and the method. It lives next to the test.</p>
+        <p>And no configuration: the recorder is on by default in the test environment. A test without the attribute is not affected.</p>
+        <p>Important: the attribute only gives the file name. It does not decide to record. That's decided when you run the tests.</p>
     </aside>
 </section>

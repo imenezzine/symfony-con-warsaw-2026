@@ -18,8 +18,8 @@ SYMFONY_HTTP_RECORDER=missing vendor/bin/phpunit --group payment
         </div>
     </div>
     <aside class="notes">
-        <p>And to choose which tests to record, we didn't invent anything: we use what PHPUnit already does. --filter, --group, a path. Here, we record a class again after an API change, and we add what's missing in the payment group without touching the rest.</p>
-        <p>[click] Why not put the mode in the attribute? Because a recording mode must never be committed: you turn it on for one run, whereas the attribute is part of the test.</p>
-        <p>[click] Then we review the diff of the .har files. And that diff is precious: it shows you in black and white what changed in the API.</p>
+        <p>How do you choose which tests to record? With PHPUnit, as usual: --filter, --group, or a path.</p>
+        <p>[click] Why not put the mode in the attribute? Because a mode must never be committed. It's only for one run.</p>
+        <p>[click] Before you commit, read the diff of the HAR files. It shows exactly what changed in the API.</p>
     </aside>
 </section>

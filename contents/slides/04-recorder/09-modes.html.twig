@@ -35,12 +35,11 @@
         <b>Fail closed</b>: a committed test <b>never</b> touches the network. Recording is an explicit choice, made at launch.
     </p>
     <aside class="notes">
-        <p>Let's recap the four modes of SYMFONY_HTTP_RECORDER.</p>
-        <p>[click] Empty, or replay: we replay the file. Missing entry: exception, never the network. It's the default, and it's what runs in CI.</p>
-        <p>[click] missing: we replay what exists, and if an entry is missing, we make the real call and append it. That's what we use for a first recording, or when we add a new call to an existing test.</p>
-        <p>[click] record: we always make the real call, and rewrite the files of the tests that ran. That's for refreshing the recordings after an API change.</p>
-        <p>[click] And passthrough: real calls, without reading or writing the files. Useful to check now and then that your tests still pass against the real services.</p>
-        <p>[click] The principle behind all this has a name: fail closed. A committed test never touches the network. Recording is always an explicit choice, made at launch.</p>
-        <p>Why does it matter so much? Imagine the default were to record missing entries. You rename a URL in a test, the entry is no longer found… and the test silently calls the real service. In CI. With the consequences you can imagine if it's a payment API.</p>
+        <p>Here is the table to remember: when to use each mode.</p>
+        <p>[click] replay: the default. That's for the CI.</p>
+        <p>[click] missing: a first recording, or a new call in a test.</p>
+        <p>[click] record: refresh everything after an API change.</p>
+        <p>[click] passthrough: check by hand, on your machine, that the real API still answers the same. Never in the CI.</p>
+        <p>[click] The idea behind this: fail closed. Imagine the default recorded missing requests. You change a URL. The request is not found. And the test calls the real payment API. In the CI! So recording is always your choice, when you run the tests.</p>
     </aside>
 </section>

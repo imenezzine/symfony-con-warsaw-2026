@@ -7,30 +7,43 @@
             </marker>
         </defs>
 
+        <!-- Start: your code alone -->
         <rect x="10" y="40" width="150" height="84" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
         <text x="85" y="76" text-anchor="middle" fill="#1F1A17" font-size="18" font-weight="bold">Your code</text>
         <text x="85" y="100" text-anchor="middle" fill="#7A6F66" font-size="14">service, controller</text>
 
-        <rect x="196" y="40" width="150" height="84" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
-        <text x="271" y="76" text-anchor="middle" fill="#1F1A17" font-size="18" font-weight="bold">http_client</text>
-        <text x="271" y="100" text-anchor="middle" fill="#7A6F66" font-size="14">scoped, retry…</text>
+        <!-- 1. http_client -->
+        <g class="fragment">
+            <line class="flow" x1="160" y1="82" x2="192" y2="82" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-pos)"/>
+            <rect x="196" y="40" width="150" height="84" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+            <text x="271" y="76" text-anchor="middle" fill="#1F1A17" font-size="18" font-weight="bold">http_client</text>
+            <text x="271" y="100" text-anchor="middle" fill="#7A6F66" font-size="14">scoped, retry…</text>
+        </g>
 
-        <rect x="382" y="40" width="200" height="84" rx="10" fill="#FFE8D6" stroke="#E8590C" stroke-width="2.5"/>
-        <text x="482" y="76" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">RecorderHttpClient</text>
-        <text x="482" y="100" text-anchor="middle" fill="#E8590C" font-size="14" font-weight="bold">new</text>
+        <!-- 2. the recorder -->
+        <g class="fragment">
+            <line class="flow" x1="346" y1="82" x2="378" y2="82" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-pos)"/>
+            <rect x="382" y="40" width="200" height="84" rx="10" fill="#FFE8D6" stroke="#E8590C" stroke-width="2.5"/>
+            <text x="482" y="76" text-anchor="middle" fill="#1F1A17" font-size="17" font-weight="bold">RecorderHttpClient</text>
+            <text x="482" y="100" text-anchor="middle" fill="#E8590C" font-size="14" font-weight="bold">new</text>
+        </g>
 
-        <rect x="618" y="40" width="150" height="84" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
-        <text x="693" y="76" text-anchor="middle" fill="#1F1A17" font-size="18" font-weight="bold">Transport</text>
-        <text x="693" y="100" text-anchor="middle" fill="#7A6F66" font-size="14">curl, amp…</text>
+        <!-- 3. the transport -->
+        <g class="fragment">
+            <line class="flow" x1="582" y1="82" x2="614" y2="82" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-pos)"/>
+            <rect x="618" y="40" width="150" height="84" rx="10" fill="#FFFDF7" stroke="#E6D9C3" stroke-width="1.5"/>
+            <text x="693" y="76" text-anchor="middle" fill="#1F1A17" font-size="18" font-weight="bold">Transport</text>
+            <text x="693" y="100" text-anchor="middle" fill="#7A6F66" font-size="14">curl, amp…</text>
+        </g>
 
-        <rect x="804" y="40" width="150" height="84" rx="10" fill="#2B2321"/>
-        <text x="879" y="88" text-anchor="middle" fill="#FFFDF7" font-size="18" font-weight="bold">Third-party API</text>
+        <!-- 4. the API -->
+        <g class="fragment">
+            <line class="flow" x1="768" y1="82" x2="800" y2="82" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-pos)"/>
+            <rect x="804" y="40" width="150" height="84" rx="10" fill="#2B2321"/>
+            <text x="879" y="88" text-anchor="middle" fill="#FFFDF7" font-size="18" font-weight="bold">Third-party API</text>
+        </g>
 
-        <line class="flow" x1="160" y1="82" x2="192" y2="82" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-pos)"/>
-        <line class="flow" x1="346" y1="82" x2="378" y2="82" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-pos)"/>
-        <line class="flow" x1="582" y1="82" x2="614" y2="82" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-pos)"/>
-        <line class="flow" x1="768" y1="82" x2="800" y2="82" stroke="#7A6F66" stroke-width="2" marker-end="url(#arr-pos)"/>
-
+        <!-- 5. details -->
         <g class="fragment">
             <line x1="482" y1="124" x2="482" y2="170" stroke="#E8590C" stroke-width="2" stroke-dasharray="5 4"/>
             <rect x="212" y="170" width="540" height="140" rx="10" fill="#FFFDF7" stroke="#E8590C" stroke-width="1.5"/>
@@ -41,8 +54,11 @@
         </g>
     </svg>
     <aside class="notes">
-        <p>Let's step back and look at the architecture. On the left, your code: a service, a controller. It calls http_client, possibly through decorators: a scoped client, a retry. Then comes RecorderHttpClient, the new one. Then the transport, curl or amp. And finally the third-party API.</p>
-        <p>[click] The recorder is the innermost decorator of http_client.transport. Three consequences. It sees absolute URLs, since it sits after the ScopingHttpClient. It's below all the other decorators, so your options, your retry, your scope apply normally. And it produces a single file for all the clients used by the test.</p>
-        <p>And when a test has no attribute, the recorder is in passthrough mode: it lets everything through, it does nothing.</p>
+        <p>Where is the recorder? Let's follow a request. It starts in your code: a service or a controller.</p>
+        <p>[click] Your code calls http_client, maybe through other decorators, like scoping or retry.</p>
+        <p>[click] Then comes RecorderHttpClient. That's the new one.</p>
+        <p>[click] Then the transport, curl.</p>
+        <p>[click] And finally the API.</p>
+        <p>[click] The recorder is the last decorator before the transport. So it sees full URLs. Your retry and your options work as usual. And one test gets one file, for all its clients.</p>
     </aside>
 </section>
